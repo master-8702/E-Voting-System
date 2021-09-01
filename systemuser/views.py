@@ -41,11 +41,23 @@ def view_voter(request):
         return render(request, 'systemuser/view_voter.html', {'var':'v'})
 
 def update_voter(request, id):
-    voter_instance = Voter.objects.get(pk=id)
-    form = VoterForm(instance=voter_instance)
-    return render(request, 'systemuser/update_voter.html',{'var':'v', 'form': form})
+    if request.method == 'GET':
+        voter_instance = Voter.objects.get(pk=id)
+        form = VoterForm(instance=voter_instance)
+        return render(request, 'systemuser/update_voter.html',{'var':'v', 'form': form})
+
+    else:
+        voter_instance = Voter.objects.get(pk=id)
+        form = VoterForm(request.POST, instance= voter_instance)
+        if form.is_valid():
+            form.save()
+        return redirect('view_voter')
+
+
 
 
 
 def delete_voter(request, id):
+    voter_instance = Voter.objects.get(pk=id)
+    voter_instance.delete()
     return redirect('view_voter')
