@@ -23,6 +23,8 @@ def register_voter(request):
         form = VoterForm(request.POST)
         if form.is_valid():
             form.save()
+        else:
+             return render(request, 'systemuser/create_voter.html', {'form': form, 'var':'r'})
         return redirect('register_voter')
 
 
