@@ -36,7 +36,7 @@ def view_voter(request):
             return render(request, 'systemuser/view_voter.html', {'var':'v', 'voter_data':voter_data})
     
     elif request.method == 'POST':
-        voter_data = Voter.objects.all().filter(voter_name=request.POST.get('search'))
+        voter_data = Voter.objects.all().filter(voter_first_name=request.POST.get('search'))
         return render(request, 'systemuser/view_voter.html', {'var':'v', 'voter_data':voter_data})
 
     else: 

@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>National Electoral Board of Ethiopia</title>
+  <title >National Electoral Board of Ethiopia</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
@@ -23,8 +23,8 @@
   <!-- Site wrapper -->
   <div class="wrapper">
     <!-- Header -->
-    <nav class="main-header navbar navbar-expand navbar-light navbar-white">
-      <div class="container" style="background-color: rgb(25, 129, 214);">
+    <nav class="main-header navbar navbar-expand navbar-light">
+      <div class="container">
         <a href="index3.html" class="navbar-brand">
           <img src="{% static 'dist/img/NEBElogo.png' %}" alt="AdminLTE Logo" class="brand-image img elevation-3"
             style="opacity: .8">
@@ -32,7 +32,7 @@
             Of Ethiopia</span>
         </a>
         <!-- SEARCH FORM -->
-        <form class="form-inline ml-3">
+        <form class="form-inline ml-3 blah">
           <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -92,7 +92,7 @@
         <p class=" text-center" style="color: aliceblue;">NEBE Officer</p>
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        <div class="form-inline" >
           <div class="input-group" data-widget="sidebar-search">
             <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
             <div class="input-group-append">
@@ -455,16 +455,100 @@
   <style>
     .nav-tabs .nav-item.show .nav-link,
     .nav-tabs .nav-link.active {
-      color: #495057;
-      background-color: #07a0e7;
+      color: #0d0e0f;
+      background-color: white;
       border-color: #dee2e6 #dee2e6 #fff;
-      border-left-color: rgb(222, 226, 230);
+      outline-color: #8f08c4;
     }
+    [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link, [class*="sidebar-dark-"] .nav-sidebar > .nav-item > .nav-link:focus {
+    /* background-color: rgba(255,255,255,.1); */
+    color: #fff;
+}
+.sidebar-mini .main-sidebar .nav-link, .sidebar-mini-md .main-sidebar .nav-link, .sidebar-mini-xs .main-sidebar .nav-link {
+    width: calc(250px - .5rem * 2);
+    transition: width ease-in-out .3s;
+    color: white
+}
+.navbar-light .navbar-brand:hover {
+    color: white
+}
+.bradn-text{
+  color: white;
+}
 
     .nav-tabs {
-      background-color: rgb(101, 173, 240);
-      color: black
+    background-image: -moz-repeating-linear-gradient( 135deg, transparent, transparent 35px, rgba(255, 255, 255, 0.5) 35px, rgba(255,255,255,.5) 70px);
+  
     }
+    .card-primary:not(.card-outline) > .card-header {
+    background-color: #8f08c4;
+}
+
+    [class*="sidebar-dark-"] {
+    background-image: linear-gradient( #d9dbec,#8e0cc2,#8e0cc2);
+   
+    /* background-image: -webkit-repeating-linear-gradient( 135deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px); */
+    /* background-image: -moz-repeating-linear-gradient( 135deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px); */
+    /* background-image: -ms-repeating-linear-gradient( 135deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px); */
+    /* background-image: -o-repeating-linear-gradient( 135deg, transparent, transparent 35px, rgb */
+}
+.os-scrollbar-handle{
+
+  color: red;
+}
+element {
+    height: 24.111%;
+    transform: translate(0px, 22.1074px);
+    color: red;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: .5rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.main-header {
+    transition: margin-left .3s ease-in-out;
+    margin-left: 250px;
+    /* background-color: purple */
+    background-image: linear-gradient(180deg, purple, rgb(210, 129, 248));
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: rgb(121, 11, 121);
+    border-color: #0062cc;
+}
+.btn-primary{
+  color: black;
+}
+.theme-color{
+  background-color: white;
+  border: 3px dotted purple;
+  border-radius: 25px;
+}
+.theme-link{
+  
+  color: purple;
+  ;
+  
+}
+[class*="sidebar-dark"] .form-control-sidebar {
+    background-color: #f3ecf5;
+    border: 1px solid purple;
+    color: rgb(31, 22, 22);
+}
+[class*="sidebar-dark"] .btn-sidebar, [class*="sidebar-dark"] .form-control-sidebar {
+    background-color: #fff;
+    border: 1px solid purple;
+    color: rgb(8, 8, 8);
+}
+
+
   </style>
 </body>
 
