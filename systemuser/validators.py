@@ -1,7 +1,7 @@
-import django
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.core.validators import RegexValidator
+from datetime import date
 # here in this python file we are creating a validator methods that can be called from any model/form.
 # it will help avoid code replication
 
@@ -17,6 +17,9 @@ def validate_voter_reg_no():
     voter_reg_no_validator = RegexValidator(r'', 'Invalid voter registration number')
        
 def validate_age(value):
+
+    today = date.today()
+    return today.year - value.year
 
     if value < 18:
         raise ValidationError("Less than 18 Years old, You are not allowed to register as a voter")

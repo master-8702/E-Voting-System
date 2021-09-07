@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'systemuser',
+    'election',
 ]
 
 
@@ -80,12 +81,15 @@ WSGI_APPLICATION = 'Evoting.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'e-voting',
         'USER': 'postgres',
         'PASSWORD': 'postgres24434',
         'HOST': 'localhost',
         'PORT': '5432',
+
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'sqlite3',
     }
 }
 

@@ -1,9 +1,9 @@
 from django.contrib.admin.sites import AdminSite
-from systemuser.models import SystemUser
+from systemuser.models import EvotingUser
 from django.contrib import admin
-from .models import SystemUser, Voter
+from .models import EvotingUser, Voter
 
 # Register your models here.
 
-admin.site.register(SystemUser)
+admin.site.register(EvotingUser)
 admin.site.register(Voter)
