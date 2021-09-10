@@ -1,4 +1,6 @@
+import election
 from django.db import models
+from django.db.models.deletion import PROTECT
 from django.db.models.fields import CharField, DateField
 from datetime import date
 
@@ -9,18 +11,21 @@ class Election(models.Model):
 
     election_name = models.CharField(max_length=255)
     election_registration_date = models.DateField(default=date.today)
-    elelction_year = models.DateField()
+    election_year = models.DateField()
     election_type = models.CharField(max_length=255, default='will be regional or federal')
-    election_date = models.DurationField()
+    election_date = models.DateField(default='2021-08-23') 
     election_result = models.CharField(max_length=255)
     political_parties = models.CharField(max_length=255)
-    candidates = models.CharField(max_length=255)
+    candidates = models.ForeignKey(to='Candidates', on_delete=PROTECT )
     election_regions = models.CharField(max_length=255)
     polling_stations = models.CharField(max_length=255)
     observers = models.CharField(max_length=255)
     analytics = models.CharField(max_length=255)
     elelction_status = models.CharField(max_length=25)
 
+
+    def __str__(self):
+        return self.election_name
 
 class Referendum(models.Model):
     referndum_name = models.CharField(max_length=255)
@@ -54,15 +59,25 @@ class Party(models.Model):
     ]
     party_name = models.CharField(max_length=255)
     party_registration_date = models.DateField(default=date.today)
-    part_logo = models.ImageField(upload_to='url here')
+    part_logo = models.ImageField(upload_to='files')
     party_type = models.CharField(choices=PARTY_CHOICES, max_length=255)
     participation_regions = CharField(max_length=255)
-    candidates = models.CharField(max_length=255)
     party_status = models.CharField(max_length=25)
+    # candidate_list = models.ForeignKey(to='Candidates', on_delete=PROTECT, default=1)
 
+   # This method is gonna tell us the total number of candidates (which are related with Party by foreign key)
+   # and it will act as a normal attribute propertiy of the class (since we add the @property class before it)
+    @property
+    def candidate_number(self):
+        return len(self.candidates_set.all())
+
+    # This method is gonna give us the party name whenever we access a given object of this class (if we 
+    # don't specify which attribute to select(use) )
+    def __str__(self):
+        return self.party_name 
 
     
-class Canidates(models.Model):
+class Candidates(models.Model):
 
     TEN_OR_BELOW = '10'
     DIPLOMA = 'DIPLOMA'
@@ -82,13 +97,20 @@ class Canidates(models.Model):
 
 
     candidate_name = models.CharField(max_length=255)
-    candidate_DOB = models.DateField()
+    candidate_DOB = models.DateField(auto_now_add=True)
     candidate_registration_date = models.DateField(default=date.today)
     Candidates_gender = models.CharField(max_length=10)
     candidate_type = models.CharField(max_length=255, default='will be choices personal/party')
     education_level = CharField(choices=EDUCATION_LEVEL_CHOICES, max_length=25)
     participation_region = CharField(max_length=255)
     candidate_status = CharField(max_length=25)
+    party = models.ForeignKey(to=Party, on_delete=PROTECT)
+
+
+
+
+    def __str__(self):
+        return self.candidate_name
 
 
 

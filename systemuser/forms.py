@@ -1,5 +1,4 @@
 from django import forms
-from django import forms 
 from .models import Voter
 
 class VoterForm(forms.ModelForm):
@@ -7,5 +6,9 @@ class VoterForm(forms.ModelForm):
     class Meta:
         model = Voter
         fields = '__all__'
+        # exclude = ['voted_to']
+
+
+
 
     

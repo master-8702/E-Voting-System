@@ -60,7 +60,9 @@ ROOT_URLCONF = 'Evoting.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR/'templates'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +132,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# we should write MEDIA_ROOT and MEDIA_URL in order to display images in our website inside templates  
+# MEDIA_ROOT is the main root url (parent folder) of media files like images .. 
+# like if we set image field's upload_to='files' ..and we make MEDIA_ROOT = BASE_DIR / 'media' then
+# the full url will be like this : 127.0.0.1/8000:media/file/abc.jpg. 
+# MEDIA_URL is the url that is going to be added before the folder 'files' in the url (which we just set in the MEDIA_ROOT)
+
 STATIC_URL = '/static/'
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = 'media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -16,8 +16,15 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from . import settings
+from django.contrib.staticfiles.urls import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('systemuser/',include('systemuser.urls')),  
-]
+    path('systemuser/',include('systemuser.urls')),
+    path('election/', include('election.urls')),
+
+] 
+# image - media -   
+#This one also helps us to display images by referencing the urls that we set in the settings.py file about MEDIA_ROOT and MEDIA_URL
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

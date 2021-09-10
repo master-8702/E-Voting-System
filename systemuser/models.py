@@ -1,4 +1,7 @@
 from datetime import date
+
+from django.db.models.deletion import PROTECT
+from election.models import Candidates
 from django.core import validators
 # from .validators import validate_age, validate_name, validate_name2
 from systemuser import validators
@@ -40,9 +43,9 @@ class EvotingUser(models.Model):
 
     STATUS_CHOICES =[(ACTIVE,'Active'), (INACTIVE,'Inactive'), (BANNED,'Banned'),]
 
-    first_name = models.CharField(max_length=100, validators=[validators.validate_name])
-    middle_name = models.CharField(max_length=100, validators=[validators.validate_name])
-    last_name = models.CharField(max_length=100, validators=[validators.validate_name])
+    first_name = models.CharField(max_length=100, validators=[validators.validate_name()])
+    middle_name = models.CharField(max_length=100, validators=[validators.validate_name()])
+    last_name = models.CharField(max_length=100, validators=[validators.validate_name()]) 
     registration_date = models.DateField(default=date.today)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
     role = models.CharField(choices=ROLE_CHOICES, default=VOTERREGISTRAR, max_length=50)
@@ -85,12 +88,12 @@ class Voter(EvotingUser):
     sub_city = models.CharField(max_length=25)
     house_number = models.IntegerField()
     voted_at = models.CharField( max_length=255, default='will be foreign key to polling stations')
-    voted_to = models.CharField(max_length=255, default='will be foreign key to candidates')
-    voted_time = models.DateTimeField()
+    voted_to = models.ManyToManyField(to=Candidates)  
+    voted_time = models.DateTimeField(auto_now_add=True)
     at_polling_station = models.BooleanField(default=True)
     disabled = models.BooleanField(default= False)
     disability_type = models.CharField(choices=DISABILITY_CHOICES, max_length=50)
-    duration_of_living_in_the_current_election_region = models.DurationField()
+    duration_of_living_in_the_current_election_region = models.DurationField(default='P4DT1H15M20S')
 
 
   
@@ -101,9 +104,8 @@ class Voter(EvotingUser):
         pass
 
     def __str__(self):
-        # return self.first_name
-        pass
-
+        return self.first_name
+       
 
 
 
