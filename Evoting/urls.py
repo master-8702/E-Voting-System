@@ -14,17 +14,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from Evoting.settings import DEBUG, INSTALLED_APPS, MIDDLEWARE
 from django.contrib import admin
 from django.urls import path, include
-from . import settings
+from django.conf import settings
 from django.contrib.staticfiles.urls import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('systemuser/',include('systemuser.urls')),
     path('election/', include('election.urls')),
-
+    path('referendum/', include('election.urls')),
+    path('referendum_options/', include('election.urls')),
+    path('candidate/', include('election.urls')),
+    path('region/', include('election.urls')),
+    path('polling_station/', include('election.urls')),
+    path('observer/', include('election.urls')),
+    
 ] 
 # image - media -   
 #This one also helps us to display images by referencing the urls that we set in the settings.py file about MEDIA_ROOT and MEDIA_URL
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+# we added this to use the django debug toolbar 
+if settings.DEBUG:
+    if 'debug_toolbar.apps.DebugToolbarConfig' in settings.INSTALLED_APPS:
+        import debug_toolbar
+        urlpatterns.append(path('__debug__/', include(debug_toolbar.urls)))
+

@@ -16,5 +16,40 @@ urlpatterns = [
     path('election/<int:id>/delete_election/', views.delete_election, name='delete_election'),
     
     
+    path('referendum/create_referendum/', views.register_referendum, name='register_referendum'),
+    path('referendum/view_referendum/', views.view_referendum, name='view_referendum'),
+    path('referendum/<int:id>/update_referendum/', views.update_referendum, name='update_referendum'),
+    path('referendum/<int:id>/delete_referendum/', views.delete_referendum, name='delete_referendum'),
+
+
+    path('create_referendum_options/', views.register_referendum_options, name='register_referendum_options'),
+    path('view_referendum_options/', views.view_referendum_options, name='view_referendum_options'),
+    path('<int:id>/update_referendum_options/', views.update_referendum_options, name='update_referendum_options'),
+    path('<int:id>/delete_referendum_options/', views.delete_referendum_options, name='delete_referendum_options'),
+
+
+    path('create_candidate/', views.register_candidate, name='register_candidate'),
+    path('view_candidate/', views.view_candidate, name='view_candidate'),
+    path('<int:id>/update_candidate/', views.update_candidate, name='update_candidate'),
+    path('<int:id>/delete_candidate/', views.delete_candidate, name='delete_candidate'),
+
+
+    path('create_region/', views.register_region, name='register_region'),
+    path('view_region/', views.view_region, name='view_region'),
+    path('<int:id>/update_region/', views.update_region, name='update_region'),
+    path('<int:id>/delete_region/', views.delete_region, name='delete_region'),
+
+
+    path('create_polling_station/', views.register_polling_station, name='register_polling_station'),
+    path('view_polling_station/', views.view_polling_station, name='view_polling_station'),
+    path('<int:id>/update_polling_station/', views.update_polling_station, name='update_polling_station'),
+    path('<int:id>/delete_polling_station/', views.delete_polling_station, name='delete_polling_station'),
+
+
+    path('create_observer/', views.register_observer, name='register_observer'),
+    path('view_observer/', views.view_observer, name='view_observer'),
+    path('<int:id>/update_observer/', views.update_observer, name='update_observer'),
+    path('<int:id>/delete_observer/', views.delete_observer, name='delete_observer'),
+
 
 ]

@@ -1,14 +1,14 @@
-from systemuser.forms import VoterForm
+from systemuser.forms import EmployeeForm, VoterForm
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .forms import VoterForm
-from .models import Voter
+from .models import Employee, Voter
 
 
 # Create your views here.
 
-# view (controler) methods for veoters starts here
+# view (controler) methods for voters starts here
 
 def index(request):
     return render(request,'systemuser/index.html')
@@ -66,8 +66,6 @@ def update_voter(request, id):
 
 
 
-
-
 def delete_voter(request, id):
     voter_instance = Voter.objects.get(pk=id)
     voter_instance.delete()
@@ -77,7 +75,69 @@ def delete_voter(request, id):
 # view (controler) methods for veoters ends here
 
 
-# view (controler) methods for parties starts here
+
+# view (controler) methods for employees starts here
+
+
+
+def register_employee(request):
+    if request.method == 'GET':
+        form = EmployeeForm()
+        return render(request, 'systemuser/create_employee.html', {'form': form, 'var':'r'})
+
+    else:
+        form = EmployeeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            # form.save_m2m()
+        else:
+             return render(request, 'systemuser/create_employee.html', {'form': form, 'var':'r'})
+        return redirect('register_employee')
+
+
+
+
+def view_employee(request):
+    
+    if request.method == 'POST' and request.POST.get('search') == '__all__':
+        employee_data = Employee.objects.all()
+        return render(request, 'systemuser/view_employee.html', {'var':'v', 'employee_data':employee_data})
+    
+    elif request.method == 'POST':
+        employee_data = Employee.objects.all().filter(first_name=request.POST.get('search'))
+        return render(request, 'systemuser/view_employee.html', {'var':'v', 'employee_data':employee_data})
+
+    elif request.method == 'GET':
+        method_is_get=True;
+        return render(request, 'systemuser/view_employee.html', {'var':'v', 'method_is_get': method_is_get})
+    else:
+        return render(request, 'systemuser/view_employee.html', {'var':'v'})
+
+def update_employee(request, id):
+    if request.method == 'GET':
+        employee_instance = Employee.objects.get(pk=id)
+        form = EmployeeForm(instance=employee_instance)
+        return render(request, 'systemuser/update_employee.html',{'var':'v', 'form': form})
+
+    else:
+        employee_instance = Employee.objects.get(pk=id)
+        form = EmployeeForm(request.POST, request.FILES, instance= employee_instance)
+        if form.is_valid():
+            form.save()
+        return redirect('view_employee')
+
+
+
+def delete_employee(request, id):
+    employee_instance = Employee.objects.get(pk=id)
+    employee_instance.delete()
+    return redirect('view_employee')
+
+
+
+
+# view (controler) methods for employees starts here
+
 
 
 

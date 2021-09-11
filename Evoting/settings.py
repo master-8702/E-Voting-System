@@ -28,6 +28,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
+# we added this(127.0.0.1) to use the django debug toolbar 
+
+INTERNAL_IPS = [ 
+     
+    '127.0.0.1',
+    
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -53,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'Evoting.urls'
@@ -153,3 +163,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"), 
 ]
+
+
+# we added this to use the django debug toolbar 
+
+if DEBUG:
+    INSTALLED_APPS.append('debug_toolbar.apps.DebugToolbarConfig')
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    DEBUG_TOOLBAR_CONFIG = {
+        'SHOW_TOOLBAR_CALLBACK': lambda request: True,
+        'EXTRA_SIGNALS': [],
+    }

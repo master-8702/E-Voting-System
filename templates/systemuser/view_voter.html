@@ -54,9 +54,10 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Father Name</th>
-                                            <th>Citizen Registration Number</th>
-                                            <th>Voter Registration Id</th>
+                                            <th>Citizen Reg. No</th>
+                                            <th>VRId</th>
                                             <th>Registration Date</th>
+                                            <th>Voted To</th>
                                             <th>Address</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -72,6 +73,7 @@
                                             <td> {{o.citizen_registration_number}}</td>
                                             <td> {{o.voter_registratio_id}}</td>
                                             <td> {{o.registration_date}}</td>
+                                            <td> {{o.voted_to}}</td>
                                             <td> {{o.sub_city}}</td>
                                             <td> {{o.status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_voter' o.id %}"> Update</a>

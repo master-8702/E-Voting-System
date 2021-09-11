@@ -68,6 +68,7 @@ class SuperAdmin(EvotingUser):
 
 class Employee(EvotingUser):
     employee_type = models.CharField(max_length=255)
+    employee_photo = models.ImageField(upload_to='files') 
 
 
 
@@ -88,7 +89,7 @@ class Voter(EvotingUser):
     sub_city = models.CharField(max_length=25)
     house_number = models.IntegerField()
     voted_at = models.CharField( max_length=255, default='will be foreign key to polling stations')
-    voted_to = models.ManyToManyField(to=Candidates)  
+    voted_to = models.ForeignKey(to=Candidates, on_delete=PROTECT)  
     voted_time = models.DateTimeField(auto_now_add=True)
     at_polling_station = models.BooleanField(default=True)
     disabled = models.BooleanField(default= False)

@@ -115,10 +115,44 @@
               <a href="{% url 'view_election' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
-                  Manage Election
+                  Manage Elections
                 </p>
               </a>
             </li>
+
+            <li class="nav-item has-treeview ">
+
+
+              <a href="/docs/3.0/components" class="nav-link ">
+                <i class="nav-icon fas fa-th"></i>
+                <p>
+                  Referendums
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+
+
+              <ul class="nav nav-treeview">
+
+
+                <li class="nav-item">
+                  <a href="{% url 'view_referendum' %}" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Referendum</p>
+                  </a>
+                </li>
+
+
+                <li class="nav-item">
+                  <a href="{% url 'view_referendum_options' %}" class="nav-link ">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Manage Referendum options</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
 
             <li class="nav-item">
               <a href="{%  url 'view_voter' %}" class="nav-link">
@@ -130,7 +164,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
+              <a href="{%  url 'view_employee' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   Manage Employees
@@ -148,7 +182,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
+              <a href="{% url  'view_candidate' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   manage candidates
@@ -157,7 +191,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
+              <a href="{%  url  'view_observer'  %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   Manage Observers
@@ -166,7 +200,16 @@
             </li>
 
             <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
+              <a href="{%  url  'view_region'  %}" class="nav-link">
+                <i class="nav-icon fas fa-columns"></i>
+                <p>
+                  Manage Regions
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="{%  url 'view_polling_station'%}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   Manage polling Station

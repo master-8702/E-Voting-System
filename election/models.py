@@ -1,4 +1,3 @@
-import election
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.db.models.fields import CharField, DateField
@@ -27,22 +26,56 @@ class Election(models.Model):
     def __str__(self):
         return self.election_name
 
+
+
+
 class Referendum(models.Model):
-    referndum_name = models.CharField(max_length=255)
+    referendum_name = models.CharField(max_length=255)
     referendum_registration_date = models.DateField(default=date.today)
-    referendum_date = models.DurationField()
-    referendum_options = models.CharField(max_length=255, default='will be foreign key to referendumoptions')
+    referendum_date = models.DurationField(default='P4DT1H15M20S')
+    # referendum_options = models.ForeignKey(to='ReferendumOptions', on_delete=PROTECT, default='Yihun')
     referendum_regions = models.CharField(max_length=25)
     referendum_stations = models.CharField(max_length=255, default='will be foreign key to referendum stations')
     referendum_observers = models.CharField(max_length=25, default='ggg')
     referendum_analytics = models.CharField(max_length=25)
     referendum_result = models.CharField(max_length=25)
+    referendum_status = models.CharField(max_length=255)
+
+
+    #here this method is going to tell us what options does a certain refendum has (using the foreign key 
+    # in the other class)
+    @property
+    def referendum_options_list(self):
+        b={}
+        # for a in self.referendumoptions_set.all():
+        #     b += a.referendum_option_name +", "
+        #     print(b)
+        # return b 
+       
+        for index, val in enumerate(self.referendumoptions_set.all()):
+           
+            b+=(index, val)
+       
+        # return self.referendumoptions_set.all()
+        
+    # @property
+    # def referendum_options_list(self):
+    #     return self.get_related_to(ReferendumOptions)
+   
+    def __str__(self):
+        return self.referendum_name
 
 
 
 class ReferendumOptions(models.Model):
     
     referendum_option_name = models.CharField(max_length=25)
+    referendum = models.ForeignKey(to=Referendum, on_delete=PROTECT)
+
+
+
+    def __str__(self):
+        return self.referendum_option_name
 
 
 
@@ -109,6 +142,7 @@ class Candidates(models.Model):
 
 
 
+
     def __str__(self):
         return self.candidate_name
 
@@ -125,6 +159,7 @@ class Observer(models.Model):
 
 
 
+
 class Regions(models.Model):
     region_name = models.CharField(max_length=25)
     region_id = models.CharField(max_length=25)
@@ -133,13 +168,24 @@ class Regions(models.Model):
     region_status = models.CharField(max_length=25)
 
 
+    @property
+    def number_of_polling_stations(self):
+        return len(self.pollingstation_set.all())
+    
+    def __str__(self):
+        return self.region_name
+
 
 class PollingStation(models.Model):
     polling_station_id = models.CharField(max_length=25)
     polling_station_name = models.CharField(max_length=25)
-    found_in_region = models.CharField(max_length=255, default='foreign key to regions')
+    found_in_region = models.ForeignKey(to=Regions, on_delete=PROTECT)
     list_of_candidates = models.CharField(max_length=255, default='foreign key to candidates')
     polling_station_status = models.CharField(max_length=25)
+
+
+    def __str__(self):
+        return self.polling_station_name
 
 
 class Anlytics(models.Model):
