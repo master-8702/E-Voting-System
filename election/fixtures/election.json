@@ -1,0 +1,334 @@
+[
+{
+    "model": "election.election",
+    "pk": 1,
+    "fields": {
+        "election_name": "GENERAL ELECTION 2012",
+        "election_registration_date": "2021-09-09",
+        "election_year": "2012-10-16",
+        "election_type": "General",
+        "election_date": "2021-10-15",
+        "election_result": "hhh",
+        "political_parties": "ggg",
+        "candidates": 1,
+        "election_regions": "iii",
+        "polling_stations": "jjj",
+        "observers": "kkk",
+        "analytics": "lll",
+        "elelction_status": "Active"
+    }
+},
+{
+    "model": "election.referendum",
+    "pk": 2,
+    "fields": {
+        "referendum_name": "Welkait ke tigray  yitekalel weys ke amhara",
+        "referendum_registration_date": "2021-09-10",
+        "referendum_date": "2 03:15:20",
+        "referendum_regions": "Amhara, Tigray",
+        "referendum_stations": "Amhara and Tigray Stations",
+        "referendum_observers": "ggg ,lll, mmm",
+        "referendum_analytics": "analytics goes here",
+        "referendum_result": "result goes here",
+        "referendum_status": "Active"
+    }
+},
+{
+    "model": "election.referendum",
+    "pk": 3,
+    "fields": {
+        "referendum_name": "Sidama Kilil yihun Ayhun",
+        "referendum_registration_date": "2021-09-10",
+        "referendum_date": "4 01:15:20",
+        "referendum_regions": "Sidama Zone",
+        "referendum_stations": "sidama stations",
+        "referendum_observers": "ggg, hhh, kkk",
+        "referendum_analytics": "analytics goes here",
+        "referendum_result": "result goes here",
+        "referendum_status": "Active"
+    }
+},
+{
+    "model": "election.referendumoptions",
+    "pk": 1,
+    "fields": {
+        "referendum_option_name": "Ke Tigray Yiitekalel",
+        "referendum": 2
+    }
+},
+{
+    "model": "election.referendumoptions",
+    "pk": 3,
+    "fields": {
+        "referendum_option_name": "Ke Amhara Yitekalel",
+        "referendum": 2
+    }
+},
+{
+    "model": "election.referendumoptions",
+    "pk": 4,
+    "fields": {
+        "referendum_option_name": "Yihun",
+        "referendum": 3
+    }
+},
+{
+    "model": "election.referendumoptions",
+    "pk": 5,
+    "fields": {
+        "referendum_option_name": "Ayhun",
+        "referendum": 3
+    }
+},
+{
+    "model": "election.party",
+    "pk": 1,
+    "fields": {
+        "party_name": "Prosperity",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/hope_apYq4dT.jpg",
+        "party_type": "F",
+        "participation_regions": "ALL",
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 2,
+    "fields": {
+        "party_name": "Semaywi",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/blade_and_sea_YrAMvet.jpg",
+        "party_type": "F",
+        "participation_regions": "adama, Sidama",
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 3,
+    "fields": {
+        "party_name": "Netsanet Ena Ekulnet",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/education-teaching-master.jpg",
+        "party_type": "F",
+        "participation_regions": "Addis Ababa, Asosa, Asayeta",
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 5,
+    "fields": {
+        "party_name": "abc",
+        "party_registration_date": "2021-09-10",
+        "part_logo": "files/nice_town_forest.jpg",
+        "party_type": "R",
+        "participation_regions": "Addis Ababa, Awasa, Jimma",
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 6,
+    "fields": {
+        "party_name": "Baytona",
+        "party_registration_date": "2021-09-10",
+        "part_logo": "files/lion6_TXBLsZA.png",
+        "party_type": "R",
+        "participation_regions": "Tigray",
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 1,
+    "fields": {
+        "candidate_name": "Chaltu",
+        "candidate_DOB": "1986-09-12",
+        "candidate_registration_date": "2021-09-07",
+        "Candidates_gender": "Female",
+        "candidate_type": "Personal",
+        "education_level": "Bachelor's Degree",
+        "participation_region": "Asayeta",
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 2,
+    "fields": {
+        "candidate_name": "Kebede",
+        "candidate_DOB": "1976-08-29",
+        "candidate_registration_date": "2021-09-08",
+        "Candidates_gender": "Male",
+        "candidate_type": "Personal",
+        "education_level": "Master's Degree",
+        "participation_region": "Addis Ababa",
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 3,
+    "fields": {
+        "candidate_name": "Taye",
+        "candidate_DOB": "1977-06-12",
+        "candidate_registration_date": "2021-09-12",
+        "Candidates_gender": "Male",
+        "candidate_type": "Personal",
+        "education_level": "Bachelor's Degree",
+        "participation_region": "Addis Ababa",
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 4,
+    "fields": {
+        "candidate_name": "abera",
+        "candidate_DOB": "2021-09-09",
+        "candidate_registration_date": "2021-09-09",
+        "Candidates_gender": "male",
+        "candidate_type": "Party",
+        "education_level": "DIPLOMA",
+        "participation_region": "addis ababa",
+        "candidate_status": "active",
+        "party": 2
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 5,
+    "fields": {
+        "candidate_name": "desalegne chane",
+        "candidate_DOB": "2021-09-11",
+        "candidate_registration_date": "2021-09-11",
+        "Candidates_gender": "male",
+        "candidate_type": "Party",
+        "education_level": "Phd",
+        "participation_region": "Oromia",
+        "candidate_status": "Active",
+        "party": 3
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 6,
+    "fields": {
+        "candidate_name": "fff",
+        "candidate_DOB": "2021-09-13",
+        "candidate_registration_date": "2021-09-13",
+        "Candidates_gender": "male",
+        "candidate_type": "party",
+        "education_level": "MD",
+        "participation_region": "welkite",
+        "candidate_status": "active",
+        "party": 6
+    }
+},
+{
+    "model": "election.regions",
+    "pk": 1,
+    "fields": {
+        "region_name": "Oromia",
+        "region_id": "R0034",
+        "polling_stations": "foreign key to polling stations",
+        "location": "will be changed to point datafield",
+        "region_status": "Active"
+    }
+},
+{
+    "model": "election.regions",
+    "pk": 2,
+    "fields": {
+        "region_name": "Amhara",
+        "region_id": "R0023",
+        "polling_stations": "foreign key to polling stations",
+        "location": "will be changed to point datafield",
+        "region_status": "Active"
+    }
+},
+{
+    "model": "election.regions",
+    "pk": 3,
+    "fields": {
+        "region_name": "Addis Ababa",
+        "region_id": "R0008",
+        "polling_stations": "foreign key to polling stations",
+        "location": "will be changed to point datafield",
+        "region_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 1,
+    "fields": {
+        "polling_station_id": "ps00012",
+        "polling_station_name": "abc",
+        "found_in_region": 1,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 2,
+    "fields": {
+        "polling_station_id": "ps98434",
+        "polling_station_name": "def",
+        "found_in_region": 1,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 3,
+    "fields": {
+        "polling_station_id": "ps2342",
+        "polling_station_name": "ghi",
+        "found_in_region": 2,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 4,
+    "fields": {
+        "polling_station_id": "ps7473",
+        "polling_station_name": "klm",
+        "found_in_region": 3,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 5,
+    "fields": {
+        "polling_station_id": "ps5427",
+        "polling_station_name": "nop",
+        "found_in_region": 3,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+},
+{
+    "model": "election.pollingstation",
+    "pk": 6,
+    "fields": {
+        "polling_station_id": "ps8733",
+        "polling_station_name": "qrs",
+        "found_in_region": 1,
+        "list_of_candidates": "foreign key to candidates",
+        "polling_station_status": "Active"
+    }
+}
+
+]
+

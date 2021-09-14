@@ -2,8 +2,8 @@ from systemuser.forms import VoterForm
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from .forms import ObserverForm, ElectionForm, ObserverForm, PartyForm, PollingStationsForm, ReferendumForm, ReferendumOptionsForm, RegionsFrom
-RegionsFrom, PollingStationsForm
+from .forms import CandidatesForm, ObserverForm, ElectionForm, ObserverForm, PartyForm, PollingStationsForm, ReferendumForm, ReferendumOptionsForm, RegionsFrom
+RegionsFrom, PollingStationsForm, CandidatesForm
 from .models import Candidates, Election, Observer, Party, Referendum, ReferendumOptions, Regions, PollingStation
 
 
@@ -161,12 +161,12 @@ def register_referendum(request):
 def view_referendum(request):
     
     if request.method == 'POST' and request.POST.get('search') == '__all__':
-        candidate_data = Referendum.objects.all()
-        return render(request, 'election/view_referendum.html', {'var':'v', 'candidate_data':candidate_data})
+        referendum_data = Referendum.objects.all()
+        return render(request, 'election/view_referendum.html', {'var':'v', 'referendum_data':referendum_data})
     
     elif request.method == 'POST' and not (request.POST.get('search') ==''):
-        candidate_data = Referendum.objects.all().filter(referendum_name__icontains=request.POST.get('search'))
-        return render(request, 'election/view_referendum.html', {'var':'v', 'candidate_data':candidate_data})
+        referendum_data = Referendum.objects.all().filter(referendum_name__icontains=request.POST.get('search'))
+        return render(request, 'election/view_referendum.html', {'var':'v', 'referendum_data':referendum_data})
 
     elif request.method == 'GET':
         method_is_get=True;

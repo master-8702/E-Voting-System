@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import fields
 from .models import Employee, Voter
+from django.contrib.auth.forms import UserCreationForm
 
 class VoterForm(forms.ModelForm):
 
@@ -11,7 +12,7 @@ class VoterForm(forms.ModelForm):
 
 
 
-class EmployeeForm(forms.ModelForm):
+class EmployeeForm(UserCreationForm):
 
     class Meta:
         model = Employee

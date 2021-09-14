@@ -24,6 +24,7 @@ from django.contrib.staticfiles.urls import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('systemuser/',include('systemuser.urls')),
+    path('employee/',include('systemuser.urls')),
     path('election/', include('election.urls')),
     path('referendum/', include('election.urls')),
     path('referendum_options/', include('election.urls')),

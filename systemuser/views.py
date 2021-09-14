@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from .forms import VoterForm
 from .models import Employee, Voter
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -16,6 +17,7 @@ def index(request):
 def index1(request):
     return render(request, 'systemuser/index1.html')
 
+@login_required()
 def register_voter(request):
     if request.method == 'GET':
         form = VoterForm()
@@ -43,13 +45,15 @@ def view_voter(request):
     
     elif request.method == 'POST':
         voter_data = Voter.objects.all().filter(first_name=request.POST.get('search'))
-        return render(request, 'systemuser/view_voter.html', {'var':'v', 'voter_data':voter_data})
+        print(request.user)
+        return render(request, 'systemuser/view_voter.html', {'var':'v', 'voter_data':voter_data, 'user':request.user})
 
     elif request.method == 'GET':
         method_is_get=True;
         return render(request, 'systemuser/view_voter.html', {'var':'v', 'method_is_get': method_is_get})
     else:
         return render(request, 'systemuser/view_voter.html', {'var':'v'})
+
 
 def update_voter(request, id):
     if request.method == 'GET':

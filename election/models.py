@@ -26,7 +26,13 @@ class Election(models.Model):
     def __str__(self):
         return self.election_name
 
+    @property
+    def candidate_number(self):
+        return len(Candidates.objects.all())
 
+    @property
+    def party_number(self):
+        return len(Party.objects.all())
 
 
 class Referendum(models.Model):
@@ -46,15 +52,15 @@ class Referendum(models.Model):
     # in the other class)
     @property
     def referendum_options_list(self):
-        b={}
-        # for a in self.referendumoptions_set.all():
-        #     b += a.referendum_option_name +", "
-        #     print(b)
-        # return b 
+        b=""
+        for a in self.referendumoptions_set.all():
+            b += a.referendum_option_name +", "
+            print(b)
+        return b 
        
-        for index, val in enumerate(self.referendumoptions_set.all()):
+        # for index, val in enumerate(self.referendumoptions_set.all()):
            
-            b+=(index, val)
+        #     b+=(index, val)
        
         # return self.referendumoptions_set.all()
         
