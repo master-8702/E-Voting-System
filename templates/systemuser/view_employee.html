@@ -61,7 +61,7 @@
                                             <td> {{o.middle_type}}</td>
                                             <td> {{o.role}}</td>
                                             <td> {{o.employee_type}}</td>
-                                            <td> {{o.employee_photo}}</td>
+                                            <td> <img src="{{ o.photo.url }}" height="80px" width="100px"> </td>
                                             <td> {{o.status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_employee' o.id %}"> Update</a>
                                             </td>

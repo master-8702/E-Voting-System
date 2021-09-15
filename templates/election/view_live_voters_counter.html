@@ -1,5 +1,5 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="{% static 'plugins/overlayScrollbars/css/OverlayScrollbars.min.css' %}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -299,86 +301,6 @@
             </li>
 
 
-
-
-<!-- 
-
-            <li class="nav-header fas ">Incase if i need them</li>
-
-
-            <li class="nav-item has-treeview">
-
-              <a href="#" class="nav-link ">
-                <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>
-                  Dashboard
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="../../index.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="../../index3.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Dashboard v3</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            </li>
-
-
-            </br>
-            </br>
-
-            <li class="nav-item">
-              <a href="../widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-th"></i>
-                <p>
-                  Widgets
-                  <span class="right badge badge-danger">New</span>
-                </p>
-              </a>
-            </li>
-
-            <li class="nav-header">EXAMPLES</li>
-            <li class="nav-item">
-              <a href="../calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Calendar
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../gallery.html" class="nav-link">
-                <i class="nav-icon far fa-image"></i>
-                <p>
-                  Gallery
-                </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
-                <i class="nav-icon fas fa-columns"></i>
-                <p>
-                  Kanban Board
-                </p>
-              </a>
-            </li> -->
-
           </ul>
         </nav>
         <!-- /.sidebar-menu -->
@@ -396,37 +318,13 @@
 
 
 
+<div >  
+  <h2 id="abc"> Currently registered Voters as of {% now "SHORT_DATETIME_FORMAT" %} is: </h2>
+  <h1 id="voters-display"></h1> 
 
-      {% block content %}
-
-      {% endblock content %}
-
-
+</div>
     </div>
-    <!-- <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                jhvjghv
-               
-                   <div> 
-                    <button type="button" class="btn float-right btn-primary btn-lg">View</button>
-                  </div>
-                  </div>
-                <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
-                    
-                  </div> -->
-    <!-- <div class="tab-pane fade" id="custom-tabs-one-settings" role="tabpanel" aria-labelledby="custom-tabs-one-settings-tab">
-                   Pellentesque vestibulum commodo nibh nec blandit. Maecenas neque magna, iaculis tempus turpis ac, ornare sodales tellus. Mauris eget blandit dolor. Quisque tincidunt venenatis vulputate. Morbi euismod molestie tristique. Vestibulum consectetur dolor a vestibulum pharetra. Donec interdum placerat urna nec pharetra. Etiam eget dapibus orci, eget aliquet urna. Nunc at consequat diam. Nunc et felis ut nisl commodo dignissim. In hac habitasse platea dictumst. Praesent imperdiet accumsan ex sit amet facilisis.
-                   <div> 
-                    <button type="button" class="btn float-right btn-primary btn-lg">Delete</button>
-                  </div>
-                  </div> -->
-  </div>
-  </div>
-  <!-- /.card -->
-  </div>
-
-
-
-  <!-- /.content -->
+   
 
   </div>
 
@@ -442,7 +340,43 @@
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.iohjh">NEBE</a>.</strong> All rights reserved.
 
   </footer>
+  <!-- var temp = "<p>" + response.data + "</p>"; -->
 
+<script >
+  $(document).ready(function(){
+
+    setInterval(function(){
+
+      $.ajax({
+        type: 'GET',
+        url : "{% url 'fetch_voter_data' %}",
+        success : function(response){
+          console.log('yiseral')
+                  $("#voters-display").empty();
+                  
+                  // for(var key in response.data){
+                  //   var temp= "<li>" + response.data[key].first_name + "</li>";
+                  // $("#abc").append("Currently registered Voters as of "+ Date() + " is:");
+                   
+                  // $("#abc").append("Currently registered Voters as of  "+ Date(YYYY-MM-DDTHH:mm) + " is:");
+                  $("#voters-display").append(response.data);
+ 
+
+         document.getElementById("abc").innerHTML ="Currently registered Voters as of "+ Date()+" is:"
+
+                 
+                  // }
+                    },
+        error : function(response){
+          console.log("can not read data /n (from java script)")
+        }
+
+      })
+
+    }, 1000);
+  });
+
+</script>
 
   </div>
   <!-- Control Sidebar -->
@@ -450,7 +384,6 @@
   <!-- /.control-sidebar -->
 
   <!-- ./wrapper -->
-
   <!-- jQuery -->
   <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
   <!-- Bootstrap 4 -->
