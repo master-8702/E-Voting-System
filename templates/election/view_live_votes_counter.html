@@ -221,8 +221,6 @@
               </a>
             </li>
 
-           
-
             <li class="nav-item">
               <a href="{% url 'view_voter_counter' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
@@ -233,7 +231,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{% url 'view_vote_counter' %}" class="nav-link">
+              <a href="../kanban.html" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   View Live Vote Count
@@ -353,7 +351,7 @@
 
       $.ajax({
         type: 'GET',
-        url : "{% url 'fetch_voter_data' %}",
+        url : "{% url 'fetch_vote_data' %}",
         success : function(response){
           console.log('yiseral')
                   $("#voters-display").empty();
@@ -363,7 +361,7 @@
                   // $("#abc").append("Currently registered Voters as of "+ Date() + " is:");
                    
                   // $("#abc").append("Currently registered Voters as of  "+ Date(YYYY-MM-DDTHH:mm) + " is:");
-                  $("#voters-display").append(response.data);
+                  $("#voters-display").append(response.vote_data);
  
 
          document.getElementById("abc").innerHTML ="Currently registered Voters as of "+ Date()+" is:"

@@ -1,14 +1,7 @@
 from django import forms
 from django.forms import fields
-from .models import Employee, EvotingUser, Voter
+from .models import Employee, EvotingUser
 from django.contrib.auth.forms import UserCreationForm
-
-class VoterForm(forms.ModelForm):
-
-    class Meta:
-        model = Voter
-        fields = '__all__'
-        # exclude = ['voted_to']
 
 
 

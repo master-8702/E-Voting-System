@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models import fields
 from django.db.models.base import Model
-from .models import Party, Election, Referendum, ReferendumOptions, Candidates, Regions, PollingStation, Observer
+from .models import Party, Voter, Election, Referendum, ReferendumOptions, Candidates, Regions, PollingStation, Observer
 
 class PartyForm(forms.ModelForm):
 
@@ -36,6 +36,14 @@ class CandidatesForm(forms.ModelForm):
     class Meta:
         model = Candidates
         fields = '__all__'
+
+
+class VoterForm(forms.ModelForm):
+    
+    class Meta:
+        model = Voter
+        fields = '__all__'
+        # exclude = ['voted_to']
 
 
 class RegionsFrom(forms.ModelForm):

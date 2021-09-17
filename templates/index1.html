@@ -217,15 +217,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
-                <i class="nav-icon fas fa-columns"></i>
-                <p>
-                  View Analytics
-                </p>
-              </a>
-            </li>
-
+           
             <li class="nav-item">
               <a href="{% url 'view_voter_counter' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
@@ -236,7 +228,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="../kanban.html" class="nav-link">
+              <a href="{% url 'view_vote_counter' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   View Live Vote Count
@@ -249,6 +241,15 @@
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   View Election Result
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="../kanban.html" class="nav-link">
+                <i class="nav-icon fas fa-columns"></i>
+                <p>
+                  View Analytics
                 </p>
               </a>
             </li>
@@ -281,15 +282,15 @@
 
 
                 <li class="nav-item">
-                  <a href="/docs/3.0/components/main-header.html" class="nav-link ">
+                  <a href="{% url 'verify_vote_individually' %}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Verify a Vote Individully</p>
+                    <p>Verify a Vote Individully</p>  
                   </a>
                 </li>
 
 
                 <li class="nav-item">
-                  <a href="/docs/3.0/components/main-sidebar.html" class="nav-link ">
+                  <a href="{%  url  'verify_vote_universally' %}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Verify a Vote Universally</p>
                   </a>

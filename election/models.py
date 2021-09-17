@@ -2,9 +2,21 @@ from django.db import models
 from django.db.models.deletion import PROTECT
 from django.db.models.fields import CharField, DateField
 from datetime import date
+from systemuser import validators
 
 # Create your models here.
 
+
+MALE='Male'
+FEMALE='Female'
+GENDER_CHOICES = [ 
+     (MALE,'Male'),(FEMALE,'Female'),
+]
+ACTIVE='Active'
+INACTIVE='Inactive'
+BANNED= 'Banned'
+
+STATUS_CHOICES =[(ACTIVE,'Active'), (INACTIVE,'Inactive'), (BANNED,'Banned'),]
 
 class Election(models.Model):
 
@@ -163,6 +175,50 @@ class Observer(models.Model):
     observer_type = models.CharField(max_length=255, default='will be choices from types of choices')
     observer_status = models.CharField(max_length=25)
 
+
+
+
+class Voter(models.Model):
+    
+    VISION_IMPAIRMENT='V'
+    DEAF_OR_HARD_OF_HEARING='D'
+    PHYSICAL_DISABILITY='p'
+
+    DISABILITY_CHOICES = [
+        (VISION_IMPAIRMENT,'Vision Impairmnet'),(DEAF_OR_HARD_OF_HEARING,'Deaf or Hard of Hearing'),(PHYSICAL_DISABILITY, 'Physical Disability')]
+
+    
+    first_name = models.CharField(max_length=100, validators=[validators.validate_name()])
+    middle_name = models.CharField(max_length=100, validators=[validators.validate_name()])
+    last_name = models.CharField(max_length=100, validators=[validators.validate_name()]) 
+    registration_date = models.DateField(auto_now_add=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
+    citizen_registration_number = models.PositiveIntegerField()
+    voter_registratio_id = models.CharField(max_length=255) 
+    registerd_at = models.ForeignKey(to='PollingStation', on_delete=PROTECT)
+    woreda = models.IntegerField()
+    sub_city = models.CharField(max_length=25)
+    house_number = models.IntegerField()
+    voted_at = models.ForeignKey(to='PollingStation', related_name='voted_place', on_delete=PROTECT, null=True)
+    voted_to = models.ForeignKey(to=Candidates, on_delete=PROTECT, null=True)  
+    voted_time = models.DateTimeField(auto_now_add=True, null=True)
+    at_polling_station = models.BooleanField(default=True, null=True)
+    disabled = models.BooleanField(default= False)
+    disability_type = models.CharField(choices=DISABILITY_CHOICES, max_length=50, default=None)
+    voter_status = models.CharField(max_length=25,choices=STATUS_CHOICES, default=ACTIVE)
+    # duration_of_living_in_the_current_election_region = models.DurationField(default='P4DT1H15M20S')
+
+
+  
+
+    def changeVoterStatus(status):
+
+        #  Voter.status=status
+        pass
+
+    def __str__(self):
+        return self.first_name
+       
 
 
 

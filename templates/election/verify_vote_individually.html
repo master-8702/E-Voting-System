@@ -18,8 +18,6 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
-
 
 </head>
 
@@ -221,8 +219,6 @@
               </a>
             </li>
 
-           
-
             <li class="nav-item">
               <a href="{% url 'view_voter_counter' %}" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
@@ -233,7 +229,7 @@
             </li>
 
             <li class="nav-item">
-              <a href="{% url 'view_vote_counter' %}" class="nav-link">
+              <a href="../kanban.html" class="nav-link">
                 <i class="nav-icon fas fa-columns"></i>
                 <p>
                   View Live Vote Count
@@ -287,7 +283,7 @@
 
 
                 <li class="nav-item">
-                  <a href="{%  url  'verify_vote_individually' %}" class="nav-link ">
+                  <a href="{% url 'verify_vote_individually'%}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Verify a Vote Individully</p>
                   </a>
@@ -295,7 +291,7 @@
 
 
                 <li class="nav-item">
-                  <a href="{%  url  'verify_vote_universally' %}" class="nav-link ">
+                  <a href="{% url 'verify_vote_universally'%}" class="nav-link ">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Verify a Vote Universally</p>
                   </a>
@@ -323,9 +319,39 @@
 
 
 <div >  
-  <h2 id="abc"> Currently registered Voters as of {% now "SHORT_DATETIME_FORMAT" %} is: </h2>
-  <h1 id="voters-display"></h1> 
+  <div class="col-sm-12 col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Vote Verification</h4>
+        </div>
 
+        <!-- /.card-header -->
+        <div class="card-body">
+            <form action="{% url 'verify_vote_individually' %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Type Your VRID here">
+                <input type="submit" value="Verify">
+
+            </form>
+            <br>
+            {% if verification_data %}
+            {% for o in verification_data %}
+<p>Hello {{ o.first_name }} {{ o.middle_name }},  you have voted at {{o.voted_at}} location on {{ o.voted_time }} for :</p>
+<ul>
+  <li> {{ o.voted_to }} </li>
+</ul>
+</br>
+<h3> Thank You For Voting! </h3>
+            {% endfor %}
+
+            {% elif method_is_get %}
+                                <p> </p>
+
+                                {% else %}
+                                <p class="danger"> Sorry! No result Found.</p>
+
+
+                                {%endif%}
 </div>
     </div>
    
@@ -346,41 +372,7 @@
   </footer>
   <!-- var temp = "<p>" + response.data + "</p>"; -->
 
-<script >
-  $(document).ready(function(){
 
-    setInterval(function(){
-
-      $.ajax({
-        type: 'GET',
-        url : "{% url 'fetch_voter_data' %}",
-        success : function(response){
-          console.log('yiseral')
-                  $("#voters-display").empty();
-                  
-                  // for(var key in response.data){
-                  //   var temp= "<li>" + response.data[key].first_name + "</li>";
-                  // $("#abc").append("Currently registered Voters as of "+ Date() + " is:");
-                   
-                  // $("#abc").append("Currently registered Voters as of  "+ Date(YYYY-MM-DDTHH:mm) + " is:");
-                  $("#voters-display").append(response.data);
- 
-
-         document.getElementById("abc").innerHTML ="Currently registered Voters as of "+ Date()+" is:"
-
-                 
-                  // }
-                    },
-        error : function(response){
-          console.log("can not read data /n (from java script)")
-        }
-
-      })
-
-    }, 1000);
-  });
-
-</script>
 
   </div>
   <!-- Control Sidebar -->
@@ -389,6 +381,7 @@
 
   <!-- ./wrapper -->
   <!-- jQuery -->
+  <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
   <!-- Bootstrap 4 -->
   <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <!-- overlayScrollbars -->

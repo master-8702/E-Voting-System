@@ -1,15 +1,184 @@
-from systemuser.forms import VoterForm
+from election.forms import VoterForm
 from django.forms.forms import Form
 from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .forms import CandidatesForm, ObserverForm, ElectionForm, ObserverForm, PartyForm, PollingStationsForm, ReferendumForm, ReferendumOptionsForm, RegionsFrom
 RegionsFrom, PollingStationsForm, CandidatesForm
-from .models import Candidates, Election, Observer, Party, Referendum, ReferendumOptions, Regions, PollingStation
-
+from .models import Candidates,Voter, Election, Observer, Party, Referendum, ReferendumOptions, Regions, PollingStation
+from systemuser.models import EvotingUser
+from django.http import JsonResponse
+from django.db.models import Q
+import random
 
 # Create your views here.
 
 # view (controler) methods for parties starts here
+
+
+def verify_vote_universally(request):
+    
+    # i declared this to hide the "No result found text while the page is loading in 'GET'.
+    method_is_get=True 
+
+    if request.method == 'GET':
+        regions = Regions.objects.all()
+        polling_station=PollingStation.objects.all()
+        context ={'var':'v', 'regions':regions, 'polling_station':polling_station, 'method_is_get': method_is_get}
+
+        return render(request, 'election/verify_vote_universally.html',context)
+
+    if request.method =='POST':
+        if (request.POST.get('randorloc_choice') == 'Random'):
+            regions = Regions.objects.all()
+            polling_station=PollingStation.objects.all()
+        
+            # if request.POST.get('randorloc_choice') == 'bylocation':
+            #     'location_type': ['Verify by Polling Station'],
+            # 'regions': ['Oromia'], 'polling_stations': ['abc']}>
+            total_voted_voter = len(Voter.objects.all().filter(~Q(voted_to=None)))
+            thirty_percent_of_voter = ((total_voted_voter*30)/100)
+            #Generate 30% of the total voters.. random numbers between 1 and total voters number
+            randomlist = random.sample(range(1, total_voted_voter), int(thirty_percent_of_voter))
+            # verification_data= Voter.objects.all().filter(pk=1)
+            verification_data= Voter.objects.all().filter(pk__in=randomlist)
+            context ={'var':'v', 'verification_data':verification_data, 'regions':regions, 'polling_station':polling_station, 'method_is_get': method_is_get}
+            return render(request, 'election/verify_vote_universally.html',context)
+
+        elif request.POST.get('randorloc_choice') == 'bylocation' and request.POST.get('location_type') == 'Verify by Region':
+            regions = Regions.objects.all()
+            polling_station=PollingStation.objects.all()
+            region_name = request.POST.get('regions')
+            print(region_name)
+            abc =Regions.objects.get(region_name=region_name)
+            polling_station_in_this_region= abc.pollingstation_set.all()
+            byregion_verification_data =Voter.objects.all().filter(pk__in=polling_station_in_this_region)
+            print(byregion_verification_data)
+            context ={'var':'v', 'byregion_verification_data':byregion_verification_data, 'regions':regions, 'polling_station':polling_station, 'region_name':region_name}
+            return render(request, 'election/verify_vote_universally.html',context)
+
+        elif request.POST.get('randorloc_choice') == 'bylocation' and request.POST.get('location_type') == 'Verify by Polling Station':
+            regions = Regions.objects.all()
+            polling_station=PollingStation.objects.all()
+            polling_station_name2= request.POST.get('polling_stations');
+            print(polling_station_name2)
+            abc =PollingStation.objects.get(polling_station_name=polling_station_name2)
+            verification_data= abc.voted_place.all()
+            print(verification_data)
+            print(abc)
+            context ={'var':'v', 'verification_data':verification_data, 'regions':regions, 'polling_station':polling_station, # i declared this to hide the "No result found text while the page is loading in 'GET'
+}
+            return render(request, 'election/verify_vote_universally.html',context)
+
+        
+        else:
+            print('random is not selected')
+            return render(request, 'election/verify_vote_universally.html')
+
+
+def verify_vote_individually(request):
+    
+    if request.method == 'POST':
+        verification_data= Voter.objects.all().filter(voter_registratio_id = request.POST.get('search'))
+        return render(request, 'election/verify_vote_individually.html', {'var':'v', 'verification_data':verification_data})
+
+    else:
+        method_is_get=True;
+        return render(request, 'election/verify_vote_individually.html', {'var':'v', 'method_is_get': method_is_get})
+    return
+
+def view_live_vote_counter(request):
+    
+    return render(request,'election/view_live_votes_counter.html')
+
+
+def fetch_vote_data(request):
+    
+    vote_data = len(Voter.objects.filter(~Q(voted_to=None)))
+   
+    return JsonResponse({'vote_data':vote_data})
+
+
+def view_live_voters_counter(request):
+    # data = len(EvotingUser.objects.all())
+
+    return render(request,'election/view_live_voters_counter.html')
+
+def fetch_voter_data(request):
+    data = len(EvotingUser.objects.all())
+    # data2 = EvotingUser.objects.all()
+
+    # return JsonResponse({"data":list(data2.values())})
+    return JsonResponse({'data':data})
+
+
+
+
+@login_required(login_url='login')
+def register_voter(request):
+    if request.method == 'GET':
+        form = VoterForm()
+        return render(request, 'election/create_voter.html', {'form': form, 'var':'r'})
+
+    else:
+        form = VoterForm(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            print(request.POST)
+            form.save()
+            # form.save_m2m()
+        else:
+             return render(request, 'election/create_voter.html', {'form': form, 'var':'r'})
+        return redirect('register_voter')
+
+
+
+
+def view_voter(request):
+    
+    if request.method == 'POST' and request.POST.get('search') == '__all__':
+        print(request.POST)
+        voter_data = Voter.objects.all()
+        return render(request, 'election/view_voter.html', {'var':'v', 'voter_data':voter_data, 'request':request})
+    
+    elif request.method == 'POST':
+        voter_data = Voter.objects.all().filter(first_name=request.POST.get('search'))
+        return render(request, 'election/view_voter.html', {'var':'v', 'voter_data':voter_data, 'user':request.user})
+
+    elif request.method == 'GET':
+        method_is_get=True;
+        return render(request, 'election/view_voter.html', {'var':'v', 'method_is_get': method_is_get})
+    else:
+        return render(request, 'election/view_voter.html', {'var':'v'})
+
+@login_required()
+def update_voter(request, id):
+    if request.method == 'GET':
+        voter_instance = Voter.objects.get(pk=id)
+        form = VoterForm(instance=voter_instance)
+        return render(request, 'election/update_voter.html',{'var':'v', 'form': form})
+
+    else:
+        voter_instance = Voter.objects.get(pk=id)
+        form = VoterForm(request.POST, instance= voter_instance)
+        if form.is_valid():
+            form.save()
+        return redirect('view_voter')
+
+
+
+def delete_voter(request, id):
+    voter_instance = Voter.objects.get(pk=id)
+    voter_instance.delete()
+    return redirect('view_voter')
+
+
+# view (controler) methods for veoters ends here
+
+
+
+
+
 
 
 def register_party(request):

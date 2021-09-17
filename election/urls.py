@@ -51,5 +51,16 @@ urlpatterns = [
     path('<int:id>/update_observer/', views.update_observer, name='update_observer'),
     path('<int:id>/delete_observer/', views.delete_observer, name='delete_observer'),
 
+    path('election/voter/verify_vote_universally/', views.verify_vote_universally, name='verify_vote_universally'),
+    path('election/voter/verify_vote_individually/', views.verify_vote_individually, name='verify_vote_individually'),
+    path('voter/view_live_voters_counter/', views.view_live_voters_counter, name='view_voter_counter'),
+    path('voter/get_voters/', views.fetch_voter_data, name='fetch_voter_data'),
+    path('voter/view_live_vote_counter/', views.view_live_vote_counter, name='view_vote_counter'),
+    path('voter/get_votes/', views.fetch_vote_data, name='fetch_vote_data'),
+    path('voter/create/', views.register_voter, name='register_voter'),
+    path('voter/view/', views.view_voter, name='view_voter'),
+    path('voter/<int:id>/update/', views.update_voter, name='update_voter'),
+    path('voter/<int:id>/delete/', views.delete_voter, name='delete_voter'),
+
 
 ]
