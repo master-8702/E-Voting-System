@@ -45,7 +45,9 @@
                                         <tr>
                                             <th>Region Id</th>
                                             <th>region Name</th>
-                                            <th>Number of Polling Stations</th>
+                                            <th>Number of Election Regions</th>
+                                            <th>Allocated HPR Seats</th>
+                                            <th>Allocated RGC Seats</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -57,7 +59,9 @@
                                         <tr>
                                             <td> {{o.region_id}}</td>
                                             <td> {{o.region_name}}</td>
-                                            <td> {{o.number_of_polling_stations}}</td>
+                                            <td> {{o.number_of_election_region}}</td>
+                                            <td> {{o.getHPRSeats}}</td>
+                                            <td> {{o.getRGCSeats}}</td>
                                             <td> {{o.region_status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_region' o.id %}"> Update</a>
                                             </td>

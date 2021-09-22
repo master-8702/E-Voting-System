@@ -52,6 +52,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Name</th>
                                             <th>Father Name</th>
                                             <th>Citizen Reg. No</th>
@@ -68,14 +69,17 @@
                                         {% for o in voter_data %}
 
                                         <tr>
+                                            <td> {{o.id}}</td>
                                             <td> {{o.first_name}}</td>
                                             <td> {{o.middle_name}}</td>
                                             <td> {{o.citizen_registration_number}}</td>
                                             <td> {{o.voter_registratio_id}}</td>
                                             <td> {{o.registration_date}}</td>
-                                            <td> {{o.voted_to}}</td>
+                                            <td>  {%for region in  o.voted_to.all  %}
+                                                {{ region }} | 
+                                               {% endfor %} </td>
                                             <td> {{o.sub_city}}</td>
-                                            <td> {{o.status}}</td>
+                                            <td> {{o.voter_status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_voter' o.id %}"> Update</a>
                                             </td>
                                             <td> <a class="theme-link" onclick="return delete_voter()"

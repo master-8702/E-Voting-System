@@ -1,0 +1,1264 @@
+[
+{
+    "model": "auth.permission",
+    "pk": 1,
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 2,
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 3,
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 4,
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 5,
+    "fields": {
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 6,
+    "fields": {
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 7,
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 8,
+    "fields": {
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 9,
+    "fields": {
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 10,
+    "fields": {
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 11,
+    "fields": {
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 12,
+    "fields": {
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 13,
+    "fields": {
+        "name": "Can add content type",
+        "content_type": 4,
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 14,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 4,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 15,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 4,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 16,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 4,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 17,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 5,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 5,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 5,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 5,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add evoting user",
+        "content_type": 6,
+        "codename": "add_evotinguser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change evoting user",
+        "content_type": 6,
+        "codename": "change_evotinguser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete evoting user",
+        "content_type": 6,
+        "codename": "delete_evotinguser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view evoting user",
+        "content_type": 6,
+        "codename": "view_evotinguser"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add employee",
+        "content_type": 7,
+        "codename": "add_employee"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change employee",
+        "content_type": 7,
+        "codename": "change_employee"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete employee",
+        "content_type": 7,
+        "codename": "delete_employee"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view employee",
+        "content_type": 7,
+        "codename": "view_employee"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add super admin",
+        "content_type": 8,
+        "codename": "add_superadmin"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change super admin",
+        "content_type": 8,
+        "codename": "change_superadmin"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete super admin",
+        "content_type": 8,
+        "codename": "delete_superadmin"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view super admin",
+        "content_type": 8,
+        "codename": "view_superadmin"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add anlytics",
+        "content_type": 9,
+        "codename": "add_anlytics"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change anlytics",
+        "content_type": 9,
+        "codename": "change_anlytics"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete anlytics",
+        "content_type": 9,
+        "codename": "delete_anlytics"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view anlytics",
+        "content_type": 9,
+        "codename": "view_anlytics"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add candidates",
+        "content_type": 10,
+        "codename": "add_candidates"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change candidates",
+        "content_type": 10,
+        "codename": "change_candidates"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete candidates",
+        "content_type": 10,
+        "codename": "delete_candidates"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view candidates",
+        "content_type": 10,
+        "codename": "view_candidates"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add observer",
+        "content_type": 11,
+        "codename": "add_observer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change observer",
+        "content_type": 11,
+        "codename": "change_observer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete observer",
+        "content_type": 11,
+        "codename": "delete_observer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view observer",
+        "content_type": 11,
+        "codename": "view_observer"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add party",
+        "content_type": 12,
+        "codename": "add_party"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change party",
+        "content_type": 12,
+        "codename": "change_party"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete party",
+        "content_type": 12,
+        "codename": "delete_party"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view party",
+        "content_type": 12,
+        "codename": "view_party"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add polling station",
+        "content_type": 13,
+        "codename": "add_pollingstation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change polling station",
+        "content_type": 13,
+        "codename": "change_pollingstation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete polling station",
+        "content_type": 13,
+        "codename": "delete_pollingstation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view polling station",
+        "content_type": 13,
+        "codename": "view_pollingstation"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add referendum",
+        "content_type": 14,
+        "codename": "add_referendum"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change referendum",
+        "content_type": 14,
+        "codename": "change_referendum"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete referendum",
+        "content_type": 14,
+        "codename": "delete_referendum"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view referendum",
+        "content_type": 14,
+        "codename": "view_referendum"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add regions",
+        "content_type": 15,
+        "codename": "add_regions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change regions",
+        "content_type": 15,
+        "codename": "change_regions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete regions",
+        "content_type": 15,
+        "codename": "delete_regions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view regions",
+        "content_type": 15,
+        "codename": "view_regions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add voter",
+        "content_type": 16,
+        "codename": "add_voter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change voter",
+        "content_type": 16,
+        "codename": "change_voter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete voter",
+        "content_type": 16,
+        "codename": "delete_voter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view voter",
+        "content_type": 16,
+        "codename": "view_voter"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add referendum options",
+        "content_type": 17,
+        "codename": "add_referendumoptions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change referendum options",
+        "content_type": 17,
+        "codename": "change_referendumoptions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete referendum options",
+        "content_type": 17,
+        "codename": "delete_referendumoptions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view referendum options",
+        "content_type": 17,
+        "codename": "view_referendumoptions"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add election",
+        "content_type": 18,
+        "codename": "add_election"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change election",
+        "content_type": 18,
+        "codename": "change_election"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete election",
+        "content_type": 18,
+        "codename": "delete_election"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view election",
+        "content_type": 18,
+        "codename": "view_election"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 2,
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 3,
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 4,
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 5,
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 6,
+    "fields": {
+        "app_label": "systemuser",
+        "model": "evotinguser"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 7,
+    "fields": {
+        "app_label": "systemuser",
+        "model": "employee"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "systemuser",
+        "model": "superadmin"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "election",
+        "model": "anlytics"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "election",
+        "model": "candidates"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "election",
+        "model": "observer"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "election",
+        "model": "party"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "election",
+        "model": "pollingstation"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "election",
+        "model": "referendum"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "election",
+        "model": "regions"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "election",
+        "model": "voter"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "election",
+        "model": "referendumoptions"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "election",
+        "model": "election"
+    }
+},
+{
+    "model": "sessions.session",
+    "pk": "uab1t4yv5f32m7fw0qrzto0c7nrqoh4u",
+    "fields": {
+        "session_data": ".eJxVjEEOwiAQAP_C2ZBSwAWP3n0D2WUXqZo2Ke3J-HdD0oNeZybzVgn3raa9yZomVhdl1OmXEeanzF3wA-f7ovMyb-tEuif6sE3fFpbX9Wj_BhVb7VtE76KUc4BiOJjoQvAD2tE4y4SEcTQZJRORQBQGtjCwt2SgAFhQny_q6Dg1:1mRFCa:6Ua3gAB-2LYkgsPxDvpcrMBrNpJEjF2I9UaDZiGiR0Y",
+        "expire_date": "2021-10-01T14:50:56.740Z"
+    }
+},
+{
+    "model": "systemuser.evotinguser",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$HOx2gn5j5JklTaBW1MSF4c$GMHmotQuzy6uWpFcjUfZ5iB57S3c2VAgXsWL033KXIE=",
+        "first_name": "Ibrahim",
+        "middle_name": "Selman",
+        "last_name": "Jemal",
+        "registration_date": "2021-09-16",
+        "gender": "Male",
+        "role": "NEBE Officer",
+        "date_of_birth": "2021-09-16",
+        "status": "Active",
+        "email": "aaa@aaa.com",
+        "username": "ibrahim",
+        "date_joined": "2021-09-15T23:13:51.421Z",
+        "last_login": "2021-09-17T14:50:55.317Z",
+        "active": true,
+        "voter_registrar": false,
+        "nebe_officer": false,
+        "observer": false,
+        "is_staff": false,
+        "is_admin": true,
+        "Evoting_admin": false,
+        "photo": "files/avatar5.png"
+    }
+},
+{
+    "model": "election.election",
+    "pk": 1,
+    "fields": {
+        "election_name": "GENERAL ELECTION 2012",
+        "election_registration_date": "2021-09-09",
+        "election_year": "2012-10-16",
+        "election_type": "General",
+        "election_date": "2021-10-15",
+        "election_result": "hhh",
+        "political_parties": "ggg",
+        "candidates": 1,
+        "election_regions": "iii",
+        "polling_stations": "jjj",
+        "observers": "kkk",
+        "analytics": "lll",
+        "elelction_status": "Active"
+    }
+},
+
+{
+    "model": "election.party",
+    "pk": 1,
+    "fields": {
+        "party_name": "Prosperity",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/hope_apYq4dT.jpg",
+        "party_type": "F",
+        "participation_regions": [1, 2, 3],
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 2,
+    "fields": {
+        "party_name": "Semaywi",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/blade_and_sea_YrAMvet.jpg",
+        "party_type": "F",
+        "participation_regions": [2, 3],
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 3,
+    "fields": {
+        "party_name": "Netsanet Ena Ekulnet",
+        "party_registration_date": "2021-09-09",
+        "part_logo": "files/education-teaching-master.jpg",
+        "party_type": "F",
+        "participation_regions": [1, 2,3],
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 5,
+    "fields": {
+        "party_name": "abc",
+        "party_registration_date": "2021-09-10",
+        "part_logo": "files/nice_town_forest.jpg",
+        "party_type": "R",
+        "participation_regions": [1, 3],
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.party",
+    "pk": 6,
+    "fields": {
+        "party_name": "Baytona",
+        "party_registration_date": "2021-09-10",
+        "part_logo": "files/lion6_TXBLsZA.png",
+        "party_type": "R",
+        "participation_regions": [3],
+        "party_status": "Active"
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 1,
+    "fields": {
+        "candidate_name": "Chaltu",
+        "candidate_DOB": "1986-09-12",
+        "candidate_registration_date": "2021-09-07",
+        "Candidates_gender": "Female",
+        "candidate_type": "Personal",
+        "education_level": "Bachelor's Degree",
+        "participation_region":[ 1],
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 2,
+    "fields": {
+        "candidate_name": "Kebede",
+        "candidate_DOB": "1976-08-29",
+        "candidate_registration_date": "2021-09-08",
+        "Candidates_gender": "Male",
+        "candidate_type": "Personal",
+        "education_level": "Master's Degree",
+        "participation_region": [2],
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 3,
+    "fields": {
+        "candidate_name": "Taye",
+        "candidate_DOB": "1977-06-12",
+        "candidate_registration_date": "2021-09-12",
+        "Candidates_gender": "Male",
+        "candidate_type": "Personal",
+        "education_level": "Bachelor's Degree",
+        "participation_region": [2],
+        "candidate_status": "Active",
+        "party": 1
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 4,
+    "fields": {
+        "candidate_name": "abera",
+        "candidate_DOB": "2021-09-09",
+        "candidate_registration_date": "2021-09-09",
+        "Candidates_gender": "male",
+        "candidate_type": "Party",
+        "education_level": "DIPLOMA",
+        "participation_region": [2],
+        "candidate_status": "active",
+        "party": 2
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 5,
+    "fields": {
+        "candidate_name": "desalegne chane",
+        "candidate_DOB": "2021-09-11",
+        "candidate_registration_date": "2021-09-11",
+        "Candidates_gender": "male",
+        "candidate_type": "Party",
+        "education_level": "Phd",
+        "participation_region": [1],
+        "candidate_status": "Active",
+        "party": 3
+    }
+},
+{
+    "model": "election.candidates",
+    "pk": 6,
+    "fields": {
+        "candidate_name": "fff",
+        "candidate_DOB": "2021-09-13",
+        "candidate_registration_date": "2021-09-13",
+        "Candidates_gender": "male",
+        "candidate_type": "party",
+        "education_level": "MD",
+        "participation_region": [3],
+        "candidate_status": "active",
+        "party": 6
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 1,
+    "fields": {
+        "first_name": "abera",
+        "middle_name": "chala",
+        "last_name": "feyisa",
+        "registration_date": "2021-09-16",
+        "gender": "Male",
+        "citizen_registration_number": 12343534,
+        "voter_registratio_id": "sfwe435",
+        "registerd_at": 1,
+        "woreda": 34,
+        "sub_city": "gulele",
+        "house_number": 76,
+        "voted_time": "2021-09-15T23:18:39.434Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 2,
+    "fields": {
+        "first_name": "amir",
+        "middle_name": "jj",
+        "last_name": "lll",
+        "registration_date": "2021-09-16",
+        "gender": "Male",
+        "citizen_registration_number": 54255,
+        "voter_registratio_id": "fger346",
+        "registerd_at": 2,
+        "woreda": 12,
+        "sub_city": "akaki",
+        "house_number": 23,
+        "voted_time": "2021-09-16T19:02:06.641Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 3,
+    "fields": {
+        "first_name": "Helen",
+        "middle_name": "kkk",
+        "last_name": "iii",
+        "registration_date": "2021-09-16",
+        "gender": "Female",
+        "citizen_registration_number": 98776,
+        "voter_registratio_id": "gf7657",
+        "registerd_at": 1,
+        "woreda": 8,
+        "sub_city": "arada",
+        "house_number": 23,
+        "voted_time": "2021-09-16T19:03:02.082Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 4,
+    "fields": {
+        "first_name": "Kebede",
+        "middle_name": "ooo",
+        "last_name": "ppp",
+        "registration_date": "2021-09-17",
+        "gender": "Male",
+        "citizen_registration_number": 4365,
+        "voter_registratio_id": "jygt765",
+        "registerd_at": 2,
+        "woreda": 9,
+        "sub_city": "gulele",
+        "house_number": 876,
+        "voted_time": "2021-09-17T19:35:50.389Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 5,
+    "fields": {
+        "first_name": "ayda",
+        "middle_name": "lll",
+        "last_name": "ppp",
+        "registration_date": "2021-09-17",
+        "gender": "Female",
+        "citizen_registration_number": 3454,
+        "voter_registratio_id": "hre4565",
+        "registerd_at": 2,
+        "woreda": 7,
+        "sub_city": "arada",
+        "house_number": 65,
+        "voted_time": "2021-09-17T19:38:12.357Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 6,
+    "fields": {
+        "first_name": "ayele",
+        "middle_name": "bbb",
+        "last_name": "nnn",
+        "registration_date": "2021-09-17",
+        "gender": "Male",
+        "citizen_registration_number": 43543,
+        "voter_registratio_id": "ygf65e65",
+        "registerd_at": 1,
+        "woreda": 7,
+        "sub_city": "arada",
+        "house_number": 543,
+        "voted_time": "2021-09-17T19:38:44.157Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 7,
+    "fields": {
+        "first_name": "almaz",
+        "middle_name": "yyy",
+        "last_name": "ttt",
+        "registration_date": "2021-09-17",
+        "gender": "Female",
+        "citizen_registration_number": 74534,
+        "voter_registratio_id": "fd5456",
+        "registerd_at": 1,
+        "woreda": 5,
+        "sub_city": "gulele",
+        "house_number": 432,
+        "voted_time": "2021-09-17T19:39:21.670Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 8,
+    "fields": {
+        "first_name": "berhanu",
+        "middle_name": "jjj",
+        "last_name": "kkk",
+        "registration_date": "2021-09-17",
+        "gender": "Male",
+        "citizen_registration_number": 64553,
+        "voter_registratio_id": "guyfyt",
+        "registerd_at": 2,
+        "woreda": 8,
+        "sub_city": "akaki",
+        "house_number": 354,
+        "voted_time": "2021-09-17T19:40:05.057Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 9,
+    "fields": {
+        "first_name": "mesfin",
+        "middle_name": "yyy",
+        "last_name": "ttt",
+        "registration_date": "2021-09-17",
+        "gender": "Male",
+        "citizen_registration_number": 43645,
+        "voter_registratio_id": "hgfrte56",
+        "registerd_at": 1,
+        "woreda": 5,
+        "sub_city": "akaki",
+        "house_number": 6564,
+        "voted_time": "2021-09-17T19:40:49.768Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 10,
+    "fields": {
+        "first_name": "Tigist",
+        "middle_name": "fff",
+        "last_name": "eee",
+        "registration_date": "2021-09-17",
+        "gender": "Female",
+        "citizen_registration_number": 54765,
+        "voter_registratio_id": "tff657",
+        "registerd_at": 1,
+        "woreda": 3,
+        "sub_city": "kolfe",
+        "house_number": 456,
+        "voted_time": "2021-09-17T19:41:50.588Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 11,
+    "fields": {
+        "first_name": "Belete",
+        "middle_name": "rrr",
+        "last_name": "ttt",
+        "registration_date": "2021-09-17",
+        "gender": "Male",
+        "citizen_registration_number": 534657,
+        "voter_registratio_id": "jhuyt76",
+        "registerd_at": 2,
+        "woreda": 5,
+        "sub_city": "arada",
+        "house_number": 6787,
+        "voted_time": "2021-09-17T19:42:27.419Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+},
+{
+    "model": "election.voter",
+    "pk": 12,
+    "fields": {
+        "first_name": "ayano",
+        "middle_name": "lll",
+        "last_name": "kkk",
+        "registration_date": "2021-09-18",
+        "gender": "Male",
+        "citizen_registration_number": 35466,
+        "voter_registratio_id": "hgf5465",
+        "registerd_at": 1,
+        "woreda": 7,
+        "sub_city": "arada",
+        "house_number": 127,
+        "voted_time": "2021-09-18T10:33:21.131Z",
+        "at_polling_station": true,
+        "disabled": false,
+        "disability_type": "V",
+        "voter_status": "Active"
+    }
+}
+
+]

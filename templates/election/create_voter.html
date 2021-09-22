@@ -1,8 +1,40 @@
 {% extends "index1.html" %}
 {% load crispy_forms_tags %}
+{% block extrastyle %}
+    {{ form.media }}
+    <style>
+        .selector{
+            float:none;
+            display:block;
+            height:330px;
+        }
+        
+        .selector input[type="submit"]{
+            display:block;
+            clear:both;
+        }
+        
+        .selector h2{
+            font-size:15px;
+        }
+        .selector  select{
+            margin: 2px 0;
+            padding: 2px 3px;
+            font-weight: normal;
+            width: 270px !important;
+            height: 17.2em;
+        }
+        
+        textarea{
+            display:block;
+            width:450px;
+        }
+        </style>
+{% endblock extrastyle %}
 
 {% block content%}
 
+    
 <div class="card card-primary card-tabs">
     <div class="card-header p-0 pt-1">
         <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
@@ -58,7 +90,10 @@
                 </div>
             </div>
 
-            {% endblock content %}
+            
         </div>
     </div>
 </div>
+
+
+{% endblock content %}

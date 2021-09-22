@@ -1,0 +1,51 @@
+{% extends "index1.html" %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+<div class="card-body">
+    <div class="tab-content" id="custom-tabs-one-tabContent">
+        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel"
+            aria-labelledby="custom-tabs-one-home-tab">
+
+
+
+            <div class="row">
+                <div class="col-sm-2 col-md-2">
+                </div>
+                <div class="col-sm-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Election Result</h4>
+                            <div class="card-body">
+                            {% if election_region_data %}
+
+                        {% for election_region in election_region_data %}
+                        <b> <p> In {{ election_region }} election region the winners are: </p> </b>
+                        {% if candidates_data %}      
+                        {% for candidates in candidates_data %}
+                            {% if election_region in candidates.participation_region.all %}
+                                <p> {{candidates}} from {{candidates.party }} party with  {{ candidates.number_of_votes }} votes.</p>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        <br>
+                        
+                        {% endfor %}
+                        {% endif%}
+                    
+
+                            
+                
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2 col-md-2">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

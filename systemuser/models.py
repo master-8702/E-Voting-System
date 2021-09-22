@@ -6,7 +6,7 @@ from django.core import validators
 # from .validators import validate_age, validate_name, validate_name2
 from systemuser import validators
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, User
 from datetime import date
 from django.db.models.signals import post_save
 

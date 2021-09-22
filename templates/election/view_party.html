@@ -69,7 +69,9 @@
                                             <td> {{o.party_name}}</td>
                                             <td> {{o.party_type}}</td>
                                             <td> {{o.party_registration_date}}</td>
-                                            <td> {{o.participation_regions}}</td>
+                                            <td>  {%for region in  o.participation_regions.all  %}
+                                             {{ region }} | 
+                                            {% endfor %} </td>
                                             <td> {{o.candidate_number}}</td>
                                             <td> <img src=" {{ o.part_logo.url }}" height="60px" width="60px">  </td> 
                                             <td> {{o.party_status}}</td>

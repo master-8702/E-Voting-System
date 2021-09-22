@@ -1,28 +1,86 @@
-from election.forms import VoterForm
-from django.forms.forms import Form
-from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from .forms import CandidatesForm, ObserverForm, ElectionForm, ObserverForm, PartyForm, PollingStationsForm, ReferendumForm, ReferendumOptionsForm, RegionsFrom
-RegionsFrom, PollingStationsForm, CandidatesForm
-from .models import Candidates,Voter, Election, Observer, Party, Referendum, ReferendumOptions, Regions, PollingStation
-from systemuser.models import EvotingUser
-from django.http import JsonResponse
-from django.db.models import Q
+from django.shortcuts import redirect, render
+
+from election.forms import VoterForm
+
+from .forms import (CandidatesForm, ElectionForm, ObserverForm, PartyForm,
+                    PollingStationsForm, ReferendumForm, ReferendumOptionsForm,
+                    RegionsForm, ElectionRegionsFrom)
 import random
 
-# Create your views here.
+from django.db.models import Q
+from django.http import JsonResponse
+from systemuser.models import EvotingUser
 
-# view (controler) methods for parties starts here
+from .models import (Candidates, Election, ElectionRegions, Observer, Party,
+                     PollingStation, Referendum, ReferendumOptions, Regions, Voter)
+
+# view (controler) methods for view analytics starts here
+
+def view_analytics(request):
+    pass
 
 
+# view (controler) methods for cast a ballot starts here
+
+def cast_ballot(request):
+    pass
+
+
+# view (controler) methods for election result starts here
+
+def view_election_result(request):
+    parties_data = Party.objects.all()
+    voters_data = Voter.objects.all()
+    election_region_data = ElectionRegions.objects.all()
+    candidates_data = Candidates.objects.all()
+    votes = Voter.objects.values_list('voted_to')
+    prr = Party.objects.get(party_name='Prosperity')
+    pr=0; sm=0; ne=0; ab=0; by=0;
+    print(votes)
+    for a in votes:
+        print(a[0])
+        h= Candidates.objects.all().filter(id=a[0])
+        
+        for a in h:
+            if not(a== None):
+                c = str(a.party)
+                if c == 'Prosperity':
+                    pr+=1
+                elif c == 'Semaywi':
+                    sm+=1
+                elif c=='Netsanet Ena Ekulnet':
+                    ne+=1
+                elif c=='abc':
+                    ab+=1
+                elif c=='Baytona':
+                    by+=1
+            print(pr)
+    add = [pr,sm, ne, ab, by]
+    print(add)
+                       
+
+    # for region in regions_data:
+    #     abc =Regions.objects.get(region_name=region_name)
+    #     polling_station_in_this_region= abc.pollingstation_set.all()
+    
+    context = {'parties_data': parties_data, 'election_region_data': election_region_data, 'candidates_data':candidates_data, 'h':h, 
+    
+                'add':add}
+
+    return render(request, 'election/view_election_result.html', context)
+
+
+
+# view (controler) methods for verify vote universally starts here
 def verify_vote_universally(request):
     
     # i declared this to hide the "No result found text while the page is loading in 'GET'.
     method_is_get=True 
 
     if request.method == 'GET':
-        regions = Regions.objects.all()
+        regions = ElectionRegions.objects.all()
         polling_station=PollingStation.objects.all()
         context ={'var':'v', 'regions':regions, 'polling_station':polling_station, 'method_is_get': method_is_get}
 
@@ -30,7 +88,7 @@ def verify_vote_universally(request):
 
     if request.method =='POST':
         if (request.POST.get('randorloc_choice') == 'Random'):
-            regions = Regions.objects.all()
+            regions = ElectionRegions.objects.all()
             polling_station=PollingStation.objects.all()
         
             # if request.POST.get('randorloc_choice') == 'bylocation':
@@ -46,11 +104,11 @@ def verify_vote_universally(request):
             return render(request, 'election/verify_vote_universally.html',context)
 
         elif request.POST.get('randorloc_choice') == 'bylocation' and request.POST.get('location_type') == 'Verify by Region':
-            regions = Regions.objects.all()
+            regions = ElectionRegions.objects.all()
             polling_station=PollingStation.objects.all()
             region_name = request.POST.get('regions')
             print(region_name)
-            abc =Regions.objects.get(region_name=region_name)
+            abc =ElectionRegions.objects.get(region_name=region_name)
             polling_station_in_this_region= abc.pollingstation_set.all()
             byregion_verification_data =Voter.objects.all().filter(pk__in=polling_station_in_this_region)
             print(byregion_verification_data)
@@ -58,7 +116,7 @@ def verify_vote_universally(request):
             return render(request, 'election/verify_vote_universally.html',context)
 
         elif request.POST.get('randorloc_choice') == 'bylocation' and request.POST.get('location_type') == 'Verify by Polling Station':
-            regions = Regions.objects.all()
+            regions = ElectionRegions.objects.all()
             polling_station=PollingStation.objects.all()
             polling_station_name2= request.POST.get('polling_stations');
             print(polling_station_name2)
@@ -75,6 +133,7 @@ def verify_vote_universally(request):
             print('random is not selected')
             return render(request, 'election/verify_vote_universally.html')
 
+# view (controler) methods for verify vote individually starts here
 
 def verify_vote_individually(request):
     
@@ -105,7 +164,7 @@ def view_live_voters_counter(request):
     return render(request,'election/view_live_voters_counter.html')
 
 def fetch_voter_data(request):
-    data = len(EvotingUser.objects.all())
+    data = Voter.objects.count()
     # data2 = EvotingUser.objects.all()
 
     # return JsonResponse({"data":list(data2.values())})
@@ -113,6 +172,7 @@ def fetch_voter_data(request):
 
 
 
+# view (controler) methods for Voter starts here
 
 @login_required(login_url='login')
 def register_voter(request):
@@ -139,6 +199,18 @@ def view_voter(request):
     if request.method == 'POST' and request.POST.get('search') == '__all__':
         print(request.POST)
         voter_data = Voter.objects.all()
+        # voters_vote =  Voter.objects.values_list('voted_to')
+        # print(voters_vote)
+        # for a in voters_vote:
+        #     print ("here"+str(a[0]))
+        #     h= Candidates.objects.all().filter(id=a[0])
+        
+        #     for a in h:
+        #         a.number_of_votes = 0
+        #         a.save()
+        #         print("there" + str(a.number_of_votes))
+        #         a.number_of_votes = a.number_of_votes + 1
+        #         a.save()
         return render(request, 'election/view_voter.html', {'var':'v', 'voter_data':voter_data, 'request':request})
     
     elif request.method == 'POST':
@@ -180,6 +252,7 @@ def delete_voter(request, id):
 
 
 
+# view (controler) methods for parties starts here
 
 def register_party(request):
     if request.method == 'GET':
@@ -202,7 +275,6 @@ def view_party(request):
     
     if request.method == 'POST' and request.POST.get('search') == '__all__':
         party_data = Party.objects.all()
-        print(party_data[0].part_logo.url) 
         return render(request, 'election/view_party.html', {'var':'v', 'party_data':party_data})
     
     elif request.method == 'POST':
@@ -459,7 +531,9 @@ def view_candidate(request):
     
     if request.method == 'POST' and request.POST.get('search') == '__all__':
         candidate_data = Candidates.objects.all()
-        return render(request, 'election/view_candidate.html', {'var':'v', 'candidate_data':candidate_data})
+        regions = ElectionRegions.objects.all()
+        context= {'var':'v', 'candidate_data':candidate_data, 'regions':regions }
+        return render(request, 'election/view_candidate.html', context)
     
     elif request.method == 'POST' and not (request.POST.get('search') ==''):
         candidate_data = Candidates.objects.all().filter(candidate_name__iexact=request.POST.get('search'))
@@ -504,11 +578,11 @@ def delete_candidate(request, id):
 
 def register_region(request):
     if request.method == 'GET':
-        form = RegionsFrom()
+        form = RegionsForm()
         return render(request, 'election/create_region.html', {'form': form, 'var':'r'})
 
     else:
-        form = RegionsFrom(request.POST)
+        form = RegionsForm(request.POST)
         if form.is_valid():
             form.save()
             # form.save_m2m()
@@ -522,7 +596,7 @@ def register_region(request):
 def view_region(request):
     
     if request.method == 'POST' and request.POST.get('search') == '__all__':
-        region_data = Regions.objects.all()
+        region_data =Regions.objects.all()
         return render(request, 'election/view_region.html', {'var':'v', 'region_data':region_data})
     
     elif request.method == 'POST' and not (request.POST.get('search') ==''):
@@ -538,12 +612,12 @@ def view_region(request):
 def update_region(request, id):
     if request.method == 'GET':
         region_instance = Regions.objects.get(pk=id)
-        form = RegionsFrom(instance=region_instance)
+        form = RegionsForm(instance=region_instance)
         return render(request, 'election/update_region.html',{'var':'v', 'form': form})
 
     else:
         region_instance = Regions.objects.get(pk=id)
-        form = RegionsFrom(request.POST)
+        form = RegionsForm(request.POST)
         if form.is_valid():
             form.save()
         return redirect('view_region')
@@ -551,13 +625,74 @@ def update_region(request, id):
 
 
 def delete_region(request, id):
-    region_instance = Regions.objects.get(pk=id)
+    region_instance =Regions.objects.get(pk=id)
     region_instance.delete()
     return redirect('view_region')
 
 
+# view (controler) methods for election regions ends here
 
-# view (controler) methods for regions ends here
+
+
+# view (controler) methods for election regions starts here
+
+
+def register_election_region(request):
+    if request.method == 'GET':
+        form = ElectionRegionsFrom()
+        return render(request, 'election/create_election_region.html', {'form': form, 'var':'r'})
+
+    else:
+        form = ElectionRegionsFrom(request.POST)
+        if form.is_valid():
+            form.save()
+            # form.save_m2m()
+        else:
+             return render(request, 'election/create_election_region.html', {'form': form, 'var':'r'})
+        return redirect('register_election_region')
+
+
+
+
+def view_election_region(request):
+    
+    if request.method == 'POST' and request.POST.get('search') == '__all__':
+        election_region_data = ElectionRegions.objects.all()
+        return render(request, 'election/view_election_region.html', {'var':'v', 'election_region_data':election_region_data})
+    
+    elif request.method == 'POST' and not (request.POST.get('search') ==''):
+        election_region_data = ElectionRegions.objects.all().filter(election_region_name__icontains=request.POST.get('search'))
+        return render(request, 'election/view_region.html', {'var':'v', 'election_region_data':election_region_data})
+
+    elif request.method == 'GET':
+        method_is_get=True;
+        return render(request, 'election/view_election_region.html', {'var':'v', 'method_is_get': method_is_get})
+    else:
+        return render(request, 'election/view_election_region.html', {'var':'v'})
+
+def update_election_region(request, id):
+    if request.method == 'GET':
+        election_region_instance = ElectionRegions.objects.get(pk=id)
+        form = ElectionRegionsFrom(instance=election_region_instance)
+        return render(request, 'election/update_election_region.html',{'var':'v', 'form': form})
+
+    else:
+        election_region_instance = ElectionRegions.objects.get(pk=id)
+        form = ElectionRegionsFrom(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('view_election_region')
+
+
+
+def delete_election_region(request, id):
+    election_region_instance = ElectionRegions.objects.get(pk=id)
+    election_region_instance.delete()
+    return redirect('view_election_region')
+
+
+
+# view (controler) methods for electionregions ends here
 
 
 

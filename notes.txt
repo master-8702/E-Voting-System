@@ -1,0 +1,173 @@
+for limitng choices in foreign key ..
+in views.py:
+
+def addIncomingPayment(request):
+    form = AddIncomingPaymentForm()
+    form.fields['bank_account'].queryset = BankAccount.objects.filter(profile=request.user.profile)
+
+or ..
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+
+    def __init__(self, *args, **kwargs):
+        super(MessageForm, self).__init__(*args, **kwargs)
+
+        if self.instance.part_of and self.instance.part_of.id:
+            users = self.instance.part_of.belong_to.all()
+            self.fields['sender'].queryset = users
+            self.fields['receiver'].queryset = users
+
+
+
+or ...codeinterprenuers answer
+
+# post.forms.py
+from django import forms
+from django.utils import timezone
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = [
+            "user",
+            "title",
+            "media",
+            "slug",
+            "body",
+            "publish_date"
+        ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        unused_files = FileItem.objects.filter(post__isnull=True)
+        instance = kwargs.get("instance")
+        if instance:
+            if instance.media:
+                # if we're using this form to edit a post instance, we'll do this
+                current_file = File.objects.filter(pk=instance.media.pk) 
+                unused_files = ( unused_files | current_file ) # combine querysets
+        self.fields['media'].queryset  = unused_files
+        # pre-fill the timezone for good measure
+        self.fields['publish_date'].initial = timezone.now()
+
+Of course, if you want this to work within the Django admin, you'll also want to do this:
+
+# post.admin.py
+from django.contrib import admin
+
+from .forms import PostForm
+
+class PostModelAdmin(admin.ModelAdmin):
+    raw_id_fields = ['user']
+    list_display = ["title", "publish_date"]
+    form = PostForm
+
+
+** To change charfield to password field 
+in forms...
+
+    from django import forms
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    class Meta:
+        model = User
+
+
+or : 
+models.py
+
+from django import models
+class User(models.Model):
+    username = models.CharField(max_length=100)
+    password = models.CharField(max_length=50)
+
+forms.py (not views.py)
+
+from django import forms
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        widgets = {
+        'password': forms.PasswordInput(),
+    }
+
+
+*********
+
+users = forms.ModelMultipleChoiceField(
+        widget=FilteredSelectMultiple(
+                                      verbose_name='aktive_mitarbeiter',
+                                      is_stacked=False
+                                     )
+        queryset=User.objects.filter(is_active=True)
+        )
+
+*************
+class SeekingForm(forms.ModelForm):
+
+    class Meta:
+        model = Seeking
+        widgets = {'company_type': forms.CheckboxSelectMultiple() }
+        exclude = (
+              'entity',
+              )
+
+
+***********
+
+to access data sent returned by value_list
+
+votes = Voter.objects.values_list('voted_to')
+    prr = Party.objects.get(party_name='Prosperity')
+    pr=0; sm=0; ne=0; ab=0; by=0;
+    print(votes)
+    for a in votes:
+        print(a[0])
+        h= Candidates.objects.all().filter(id=a[0])
+        
+        for a in h:
+            if not(a== None):
+                c = str(a.party)
+                if c == 'Prosperity':
+                    pr+=1
+                elif c == 'Semaywi':
+                    sm+=1
+
+
+*********************************
+
+
+
+
+
+
+Challenges
+
+In the procees of developing the E-voting system the main challenge was lack of information, about the election(voting) 
+system that Ethiopia Followes and Operational details in the election processes.We went to the National ELelctoaral Board of Ethiopia 
+with a hope that we will find every bit of information that we need from there, but we didnt. we even took a letter from the school
+to the NEBE and unfortunately  we didn't hear back from them. because of that we were forced to use other 
+(foreign)materials from the web, and our assumption when we impliment the rules and regulations of the E-voting system
+
+recommendations:
+
+While Developing the system (E-voting) we tried our best to make the system as secure , reliable and 
+usabel as we can by implimenting the Cross-site request forgery, hashing algorithms and more.but we still think
+ there can be many improvement made on the sytem like Implimenting block-chain. we recoomand for our fellow 
+programmers who want to design an E-voting system It could be More Secure and More reliable, if it instanceimplimented using block-chain  
+
+
+
+
+
+** just smart way of doing something
+
+class Dialog(models.Model):
+    messages = models.ManyToManyField(Message)
+    sender = models.ForeignKey(UserProfile)
+    receiver = models.ForeignKey(UserProfile)
+
+class Message(models.Model):
+    # Other fields
+

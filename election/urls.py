@@ -34,11 +34,16 @@ urlpatterns = [
     path('<int:id>/delete_candidate/', views.delete_candidate, name='delete_candidate'),
 
 
+    path('create_election_region/', views.register_election_region, name='register_election_region'),
+    path('view_election_region/', views.view_election_region, name='view_election_region'),
+    path('<int:id>/update_election_region/', views.update_election_region, name='update_election_region'),
+    path('<int:id>/delete_election_region/', views.delete_election_region, name='delete_election_region'),
+
+
     path('create_region/', views.register_region, name='register_region'),
     path('view_region/', views.view_region, name='view_region'),
     path('<int:id>/update_region/', views.update_region, name='update_region'),
     path('<int:id>/delete_region/', views.delete_region, name='delete_region'),
-
 
     path('create_polling_station/', views.register_polling_station, name='register_polling_station'),
     path('view_polling_station/', views.view_polling_station, name='view_polling_station'),
@@ -51,6 +56,9 @@ urlpatterns = [
     path('<int:id>/update_observer/', views.update_observer, name='update_observer'),
     path('<int:id>/delete_observer/', views.delete_observer, name='delete_observer'),
 
+
+
+    path('election/voter/view_election_result/', views.view_election_result, name='view_election_result'),
     path('election/voter/verify_vote_universally/', views.verify_vote_universally, name='verify_vote_universally'),
     path('election/voter/verify_vote_individually/', views.verify_vote_individually, name='verify_vote_individually'),
     path('voter/view_live_voters_counter/', views.view_live_voters_counter, name='view_voter_counter'),

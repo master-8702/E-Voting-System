@@ -44,9 +44,8 @@
                                     <thead>
                                         <tr>
                                             <th>Employee Name</th>
-                                            <th> F.Name</th>
                                             <th>Employee Role</th>
-                                            <th>Emp Type</th>
+                                            <th>Last Login</th>
                                             <th>Emp Photo</th>
                                             <th>Status</th>
                                             <th>Actions</th>
@@ -57,10 +56,9 @@
                                         {% for o in employee_data %}
 
                                         <tr>
-                                            <td> {{o.first_name}}</td>
-                                            <td> {{o.middle_type}}</td>
+                                            <td> {{o}}</td>
                                             <td> {{o.role}}</td>
-                                            <td> {{o.employee_type}}</td>
+                                            <td> {{o.last_login}}</td>
                                             <td> <img src="{{ o.photo.url }}" height="80px" width="100px"> </td>
                                             <td> {{o.status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_employee' o.id %}"> Update</a>

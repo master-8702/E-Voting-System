@@ -47,6 +47,7 @@
                                             <th>Candidate Type</th>
                                             <th>Party</th>
                                             <th>Participation Region</th>
+                                            <th>Vote Count</th>
                                             <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -59,7 +60,13 @@
                                             <td> {{o.candidate_name}}</td>
                                             <td> {{o.candidate_type}}</td>
                                             <td> {{o.party}}</td>
-                                            <td> {{o.participation_region}}</td>
+            <!-- since region (participation_region ) is ManyToMany field we can not access it like a normal field 
+            so we have to iterate through it (cause its kind of an array) -->
+                                    <td> {%for region in  o.participation_region.all  %}
+                                             {{ region }} |
+                                            {% endfor %}</td>
+                                            <!-- <td> {{o.participation_region__region_name }}</td> -->
+                                            <td> {{o.number_of_votes}}</td>
                                             <td> {{o.candidate_status}}</td>
                                             <td> <a class="theme-link" href="{% url 'update_candidate' o.id %}"> Update</a>
                                             </td>
