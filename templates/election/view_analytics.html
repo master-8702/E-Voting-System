@@ -1,0 +1,183 @@
+{% extends "index1.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content%}
+
+<script src="{%   static 'Chartjs/dist/chart.js' %}"></script>
+
+
+
+<div class="card-body">
+    <div class="tab-content" id="custom-tabs-one-tabContent">
+        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel"
+            aria-labelledby="custom-tabs-one-home-tab">
+
+
+
+            <div class="row">
+                <div class="col--2 col-md-2">
+                </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Election Analytics and Visualization</h4>
+
+                            <br> <br>
+                            <div class="card-header">
+                                <h5> Candidates Vs Total Number of Votes</h5>
+                            </div>
+
+                            <div class="card-body">
+
+                                <canvas id="myChart" width="400" height="200"></canvas>
+
+
+
+                            </div>
+                        </div>
+
+                        <div class="card-header">
+                            <h5> Candidates Vs Total Number of Votes 2</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <canvas id="myChart2" width="400" height="200"></canvas>
+
+
+
+                        </div>
+                        <div class="col-sm-2 col-md-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var mydata;
+            var data2 = {
+                'names': [],
+                'vote_counts': []
+            }
+
+// This is the main method for drawing cgarts/digrams .. its from charts.js ..this one is for bar chart
+            function drawBarChart() {
+
+                var ctx = document.getElementById('myChart');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                        labels: data2.names,
+                        datasets: [{
+                            label: 'Party Votes',
+                            label: '# of Votes',
+
+                            // data: [12, 19, 3, 5, 2, 3],
+                            data: data2.vote_counts,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+            }
+
+
+
+            function drawPolarChart() {
+
+var ctx = document.getElementById('myChart2');
+var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: data2.names,
+        datasets: [{
+            label: 'Party Votes',
+            label: '# of Votes',
+
+            // data: [12, 19, 3, 5, 2, 3],
+            data: data2.vote_counts,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+}
+
+
+// this method is gonna fetch our data from the evoting_api and call the drawBarGraph function to draw the diagram
+
+            async function getData() {
+                const resonse = await fetch('http://127.0.0.1:8000/evoting_api/voters/');
+                const data = await resonse.json();
+                console.log(data2);
+                // console.log(data[0])
+                data.forEach(data_element => {
+                    console.log('number 2' + data_element)
+                    data2.names.push(data_element.candidate_name);
+                    data2.vote_counts.push(data_element.number_of_votes)
+                });
+
+                drawBarChart(); // here we are calling drawBarChart after we get the chrt data
+                drawPolarChart();
+
+            }
+
+            getData();  // we will call the api to get data for the graph here .. after defining all the functions
+
+
+            // setInterval(getData, 2000);
+            // setInterval(ibro2, 2000);
+
+
+        </script>
+
+        {% endblock content %}

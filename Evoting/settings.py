@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'systemuser',
     'election',
     'Evoting',
+    'rest_framework',
+    'evoting_api',
 ]
 
 

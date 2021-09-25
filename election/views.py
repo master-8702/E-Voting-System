@@ -1,31 +1,56 @@
+import random
+
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.db.models import Q
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from systemuser.models import EvotingUser
 
 from election.forms import VoterForm
 
-from .forms import (CandidatesForm, ElectionForm, ObserverForm, PartyForm,
-                    PollingStationsForm, ReferendumForm, ReferendumOptionsForm,
-                    RegionsForm, ElectionRegionsFrom)
-import random
-
-from django.db.models import Q
-from django.http import JsonResponse
-from systemuser.models import EvotingUser
-
+from .forms import (CandidatesForm, ElectionForm, ElectionRegionsFrom,
+                    ObserverForm, PartyForm, PollingStationsForm,
+                    ReferendumForm, ReferendumOptionsForm, RegionsForm)
 from .models import (Candidates, Election, ElectionRegions, Observer, Party,
-                     PollingStation, Referendum, ReferendumOptions, Regions, Voter)
+                     PollingStation, Referendum, ReferendumOptions, Regions,
+                     Voter)
+
+
+
+# view (controler) methods for view analytics starts here
+def election_api(request):
+    prosperity = 0
+    semayawi = 0
+    baytona = 0;
+    netsanet_ena_ekulnet = 0;
+    abc = 0;
+    voters_vote =  Voter.objects.values_list('voted_to')
+    print(voters_vote)
+    for a in voters_vote:
+        print ("here"+str(a[0]))
+        h= Candidates.objects.all().filter(id=a[0])
+    
+        for a in h:
+            a.number_of_votes = 0
+            a.save()
+
+
+# view (controler) methods for view analytics starts here
+
+
 
 # view (controler) methods for view analytics starts here
 
 def view_analytics(request):
-    pass
+    
+    return render(request, 'election/view_analytics.html')
 
 
 # view (controler) methods for cast a ballot starts here
 
-def cast_ballot(request):
-    pass
+def cast_a_ballot(request):
+   
+   return render(request, 'election/cast_ballot.html')
 
 
 # view (controler) methods for election result starts here

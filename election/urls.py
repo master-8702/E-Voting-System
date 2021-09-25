@@ -10,10 +10,10 @@ urlpatterns = [
     path('party/<int:id>/update/', views.update_party, name='update_party'),
     path('party/<int:id>/delete/', views.delete_party, name='delete_party'),
     
-    path('election/create_election/', views.register_election, name='register_election'),
-    path('election/view_election/', views.view_election, name='view_election'),
-    path('election/<int:id>/update_election/', views.update_election, name='update_election'),
-    path('election/<int:id>/delete_election/', views.delete_election, name='delete_election'),
+    path('create_election/', views.register_election, name='register_election'),
+    path('view_election/', views.view_election, name='view_election'),
+    path('<int:id>/update_election/', views.update_election, name='update_election'),
+    path('<int:id>/delete_election/', views.delete_election, name='delete_election'),
     
     
     path('referendum/create_referendum/', views.register_referendum, name='register_referendum'),
@@ -58,9 +58,9 @@ urlpatterns = [
 
 
 
-    path('election/voter/view_election_result/', views.view_election_result, name='view_election_result'),
-    path('election/voter/verify_vote_universally/', views.verify_vote_universally, name='verify_vote_universally'),
-    path('election/voter/verify_vote_individually/', views.verify_vote_individually, name='verify_vote_individually'),
+    path('voter/view_election_result/', views.view_election_result, name='view_election_result'),
+    path('voter/verify_vote_universally/', views.verify_vote_universally, name='verify_vote_universally'),
+    path('voter/verify_vote_individually/', views.verify_vote_individually, name='verify_vote_individually'),
     path('voter/view_live_voters_counter/', views.view_live_voters_counter, name='view_voter_counter'),
     path('voter/get_voters/', views.fetch_voter_data, name='fetch_voter_data'),
     path('voter/view_live_vote_counter/', views.view_live_vote_counter, name='view_vote_counter'),
@@ -69,6 +69,10 @@ urlpatterns = [
     path('voter/view/', views.view_voter, name='view_voter'),
     path('voter/<int:id>/update/', views.update_voter, name='update_voter'),
     path('voter/<int:id>/delete/', views.delete_voter, name='delete_voter'),
+
+
+    path('view_analytics/', views.view_analytics, name='view_analytics'),
+
 
 
 ]
