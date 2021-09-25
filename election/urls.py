@@ -69,6 +69,7 @@ urlpatterns = [
     path('voter/view/', views.view_voter, name='view_voter'),
     path('voter/<int:id>/update/', views.update_voter, name='update_voter'),
     path('voter/<int:id>/delete/', views.delete_voter, name='delete_voter'),
+    path('voter/cast_ballot/', views.cast_ballot, name='cast_ballot'),
 
 
     path('view_analytics/', views.view_analytics, name='view_analytics'),

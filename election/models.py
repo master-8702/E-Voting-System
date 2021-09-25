@@ -165,6 +165,7 @@ class Candidates(models.Model):
     candidate_type = models.CharField(choices=PARTY_TYPE_CHOICES,max_length=255, default=PARTY)
     education_level = models.CharField(choices=EDUCATION_LEVEL_CHOICES, max_length=25)
     participation_region = models.ManyToManyField(to='ElectionRegions')
+    candidate_photo = models.ImageField(upload_to='candidates_image/')
     candidate_status = models.CharField(choices= STATUS_CHOICES ,max_length=25, default=ACTIVE)
     party = models.ForeignKey(to=Party, on_delete=PROTECT, blank=True, null=True)
     number_of_votes = models.PositiveIntegerField(default=0)
@@ -181,7 +182,11 @@ class Candidates(models.Model):
     def abc(self):
         print(self.electionregions_set.all())
         return  self.electionregions_set.all()  #self.candidates_set.all()
-
+    
+    @property
+    def party_image(self):
+        par = Party.objects.all().get(id=self.party_id)
+        return par.part_logo
         
 
 #The following class is the model for our Observer Entity

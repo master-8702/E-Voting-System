@@ -2,79 +2,147 @@
 {% load crispy_forms_tags %}
 {% load static %}
 
+
 {% block content%}
 
-<script src="{%   static 'Chartjs/dist/chart.js' %}"></script>
+
+<div class="card">
+    <div class="card-header">
+        <h1 class="text-center">Cast Your Ballot Here</h1>
+        <div class="card-body">
+            
 
 
 
-<div class="card-body">
-    <div class="tab-content" id="custom-tabs-one-tabContent">
-        <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel"
-            aria-labelledby="custom-tabs-one-home-tab">
+                    <div class="row">
+                        <div class="col-sm-2 col-md-2">
+                        </div>
+                        <div class="col-sm-8 col-md-8">
+                            <div class="card">
+                                <div class="card-header bg-primary">
+                                    {% if candidates_data %}
+                                    <h4 class="text-center">For House of Peoples' Representatives</h4>
+                                </div>
+                                <div class="card-body " >
+
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Candiddate Name </th>
+                                                <th>Photo</th>
+                                                <th>Party</th>
+                                                <th>Party Logo</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {% for candidate in candidates_data %}
+
+                                            <tr>
+                                                <td> {{ forloop.counter }}</td>
+                                                <td> {{ candidate.candidate_name }}</td>
+                                                <td> <img src=" {{ candidate.candidate_photo.url }}" height="80"
+                                                        width="80"> </td>
+                                                <td> {% if candidate.candidate_type == 'Personal' %} Personal
+                                                    Candidate {% else %} {{candidate.party }} {% endif %} </td>
+                                                <td> <img src=" {{ candidate.party_image.url }} " height="80" width="80"
+                                                        class="img-circle"> </td>
+                                                <td> <input type="checkbox" id="HPR_candidates" name="HPR_candidates"
+                                                        value=" {{ candidate.id }} "> </td>
+
+                                            </tr>
+
+                                            {% endfor %}
+                                        </tbody>
+
+                                    </table>
+                                    <br>
+                                    <form>
+                                        <input type="submit" value="VOTE">
+                                    </form>
+                                    {% endif %}
 
 
 
-            <div class="row">
-                <div class="col-sm-2 col-md-2">
-                </div>
-                <div class="col-sm-8 col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Cast Your Ballot Here</h4>
-                            <div class="card-body">
-                            
-                                <canvas id="myChart" width="400" height="400"></canvas>
 
-                            
-                
+
+                                </div>
+
+                            </div>
+                            <div class="col-sm-2 col-md-2">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-2 col-md-2">
+             <br>  <hr> <br>
+
+                <div class="row">
+                    <div class="col-sm-2 col-md-2">
+                    </div>
+                    <div class="col-sm-8 col-md-8">
+                        <div class="card">
+                            <div class="card-header bg-info">
+                                {% if candidates_data %}
+                                <h4 class="text-center ">For Regional Goverment Council</h4>
+                            </div>
+                            <div class="card-body">
+
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Candiddate Name </th>
+                                            <th>Photo</th>
+                                            <th>Party</th>
+                                            <th>Party Logo</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for candidate in candidates_data %}
+
+                                        <tr>
+                                            <td> {{ forloop.counter }}</td>
+                                            <td> {{ candidate.candidate_name }}</td>
+                                            <td> <img src=" {{ candidate.candidate_photo.url }}" height="80" width="80">
+                                            </td>
+                                            <td> {% if candidate.candidate_type == 'Personal' %}
+                                                Personal Candidate {% else %} {{candidate.party }}
+                                                {% endif %} </td>
+                                            <td> <img src=" {{ candidate.party_image.url }} " height="80" width="80"
+                                                    class="img-circle"> </td>
+                                            <td> <input type="checkbox" id="HPR_candidates" name="HPR_candidates"
+                                                    value=" {{ candidate.id }} ">
+                                            </td>
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+                                <br>
+                                <form>
+                                    <input type="submit" value="VOTE">
+                                </form>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<script>
-
-    var ctx = document.getElementById('myChart');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-    
-    </script>
-
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 {% endblock content %}

@@ -48,9 +48,12 @@ def view_analytics(request):
 
 # view (controler) methods for cast a ballot starts here
 
-def cast_a_ballot(request):
+def cast_ballot(request):
+    candidates_data = Candidates.objects.all()
+    parties_data  =Party.objects.all()
+    context = {'candidates_data':candidates_data, 'parties_data':parties_data}
    
-   return render(request, 'election/cast_ballot.html')
+    return render(request, 'election/cast_ballot.html', context)
 
 
 # view (controler) methods for election result starts here
