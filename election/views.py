@@ -55,6 +55,16 @@ def cast_ballot(request):
    
     return render(request, 'election/cast_ballot.html', context)
 
+# view (controler) methods for referendum result starts here
+
+def view_referendum_result(request):
+    referendum_data = Referendum.objects.all()
+
+    return render(request, 'election/view_referendum_result.html',{ 'referendum_data':referendum_data})
+
+# view (controler) methods for referendum result starts here
+
+
 
 # view (controler) methods for election result starts here
 

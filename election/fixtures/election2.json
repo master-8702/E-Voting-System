@@ -1,805 +1,5 @@
 [
 {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-        "name": "Can add log entry",
-        "content_type": 1,
-        "codename": "add_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-        "name": "Can change log entry",
-        "content_type": 1,
-        "codename": "change_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-        "name": "Can delete log entry",
-        "content_type": 1,
-        "codename": "delete_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-        "name": "Can view log entry",
-        "content_type": 1,
-        "codename": "view_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-        "name": "Can add permission",
-        "content_type": 2,
-        "codename": "add_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-        "name": "Can change permission",
-        "content_type": 2,
-        "codename": "change_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-        "name": "Can delete permission",
-        "content_type": 2,
-        "codename": "delete_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-        "name": "Can view permission",
-        "content_type": 2,
-        "codename": "view_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-        "name": "Can add group",
-        "content_type": 3,
-        "codename": "add_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-        "name": "Can change group",
-        "content_type": 3,
-        "codename": "change_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-        "name": "Can delete group",
-        "content_type": 3,
-        "codename": "delete_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-        "name": "Can view group",
-        "content_type": 3,
-        "codename": "view_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-        "name": "Can add content type",
-        "content_type": 4,
-        "codename": "add_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-        "name": "Can change content type",
-        "content_type": 4,
-        "codename": "change_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-        "name": "Can delete content type",
-        "content_type": 4,
-        "codename": "delete_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-        "name": "Can view content type",
-        "content_type": 4,
-        "codename": "view_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-        "name": "Can add session",
-        "content_type": 5,
-        "codename": "add_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-        "name": "Can change session",
-        "content_type": 5,
-        "codename": "change_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-        "name": "Can delete session",
-        "content_type": 5,
-        "codename": "delete_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-        "name": "Can view session",
-        "content_type": 5,
-        "codename": "view_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-        "name": "Can add evoting user",
-        "content_type": 6,
-        "codename": "add_evotinguser"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-        "name": "Can change evoting user",
-        "content_type": 6,
-        "codename": "change_evotinguser"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-        "name": "Can delete evoting user",
-        "content_type": 6,
-        "codename": "delete_evotinguser"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-        "name": "Can view evoting user",
-        "content_type": 6,
-        "codename": "view_evotinguser"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-        "name": "Can add employee",
-        "content_type": 7,
-        "codename": "add_employee"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-        "name": "Can change employee",
-        "content_type": 7,
-        "codename": "change_employee"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-        "name": "Can delete employee",
-        "content_type": 7,
-        "codename": "delete_employee"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 28,
-    "fields": {
-        "name": "Can view employee",
-        "content_type": 7,
-        "codename": "view_employee"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 29,
-    "fields": {
-        "name": "Can add super admin",
-        "content_type": 8,
-        "codename": "add_superadmin"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 30,
-    "fields": {
-        "name": "Can change super admin",
-        "content_type": 8,
-        "codename": "change_superadmin"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 31,
-    "fields": {
-        "name": "Can delete super admin",
-        "content_type": 8,
-        "codename": "delete_superadmin"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 32,
-    "fields": {
-        "name": "Can view super admin",
-        "content_type": 8,
-        "codename": "view_superadmin"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 33,
-    "fields": {
-        "name": "Can add anlytics",
-        "content_type": 9,
-        "codename": "add_anlytics"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 34,
-    "fields": {
-        "name": "Can change anlytics",
-        "content_type": 9,
-        "codename": "change_anlytics"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 35,
-    "fields": {
-        "name": "Can delete anlytics",
-        "content_type": 9,
-        "codename": "delete_anlytics"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 36,
-    "fields": {
-        "name": "Can view anlytics",
-        "content_type": 9,
-        "codename": "view_anlytics"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-        "name": "Can add candidates",
-        "content_type": 10,
-        "codename": "add_candidates"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-        "name": "Can change candidates",
-        "content_type": 10,
-        "codename": "change_candidates"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 39,
-    "fields": {
-        "name": "Can delete candidates",
-        "content_type": 10,
-        "codename": "delete_candidates"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 40,
-    "fields": {
-        "name": "Can view candidates",
-        "content_type": 10,
-        "codename": "view_candidates"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 41,
-    "fields": {
-        "name": "Can add observer",
-        "content_type": 11,
-        "codename": "add_observer"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 42,
-    "fields": {
-        "name": "Can change observer",
-        "content_type": 11,
-        "codename": "change_observer"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 43,
-    "fields": {
-        "name": "Can delete observer",
-        "content_type": 11,
-        "codename": "delete_observer"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 44,
-    "fields": {
-        "name": "Can view observer",
-        "content_type": 11,
-        "codename": "view_observer"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 45,
-    "fields": {
-        "name": "Can add party",
-        "content_type": 12,
-        "codename": "add_party"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 46,
-    "fields": {
-        "name": "Can change party",
-        "content_type": 12,
-        "codename": "change_party"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 47,
-    "fields": {
-        "name": "Can delete party",
-        "content_type": 12,
-        "codename": "delete_party"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 48,
-    "fields": {
-        "name": "Can view party",
-        "content_type": 12,
-        "codename": "view_party"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 49,
-    "fields": {
-        "name": "Can add polling station",
-        "content_type": 13,
-        "codename": "add_pollingstation"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 50,
-    "fields": {
-        "name": "Can change polling station",
-        "content_type": 13,
-        "codename": "change_pollingstation"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 51,
-    "fields": {
-        "name": "Can delete polling station",
-        "content_type": 13,
-        "codename": "delete_pollingstation"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 52,
-    "fields": {
-        "name": "Can view polling station",
-        "content_type": 13,
-        "codename": "view_pollingstation"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 53,
-    "fields": {
-        "name": "Can add referendum",
-        "content_type": 14,
-        "codename": "add_referendum"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 54,
-    "fields": {
-        "name": "Can change referendum",
-        "content_type": 14,
-        "codename": "change_referendum"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 55,
-    "fields": {
-        "name": "Can delete referendum",
-        "content_type": 14,
-        "codename": "delete_referendum"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 56,
-    "fields": {
-        "name": "Can view referendum",
-        "content_type": 14,
-        "codename": "view_referendum"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 57,
-    "fields": {
-        "name": "Can add regions",
-        "content_type": 15,
-        "codename": "add_regions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 58,
-    "fields": {
-        "name": "Can change regions",
-        "content_type": 15,
-        "codename": "change_regions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 59,
-    "fields": {
-        "name": "Can delete regions",
-        "content_type": 15,
-        "codename": "delete_regions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 60,
-    "fields": {
-        "name": "Can view regions",
-        "content_type": 15,
-        "codename": "view_regions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 61,
-    "fields": {
-        "name": "Can add voter",
-        "content_type": 16,
-        "codename": "add_voter"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 62,
-    "fields": {
-        "name": "Can change voter",
-        "content_type": 16,
-        "codename": "change_voter"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 63,
-    "fields": {
-        "name": "Can delete voter",
-        "content_type": 16,
-        "codename": "delete_voter"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 64,
-    "fields": {
-        "name": "Can view voter",
-        "content_type": 16,
-        "codename": "view_voter"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 65,
-    "fields": {
-        "name": "Can add referendum options",
-        "content_type": 17,
-        "codename": "add_referendumoptions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 66,
-    "fields": {
-        "name": "Can change referendum options",
-        "content_type": 17,
-        "codename": "change_referendumoptions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 67,
-    "fields": {
-        "name": "Can delete referendum options",
-        "content_type": 17,
-        "codename": "delete_referendumoptions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 68,
-    "fields": {
-        "name": "Can view referendum options",
-        "content_type": 17,
-        "codename": "view_referendumoptions"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 69,
-    "fields": {
-        "name": "Can add election",
-        "content_type": 18,
-        "codename": "add_election"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 70,
-    "fields": {
-        "name": "Can change election",
-        "content_type": 18,
-        "codename": "change_election"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 71,
-    "fields": {
-        "name": "Can delete election",
-        "content_type": 18,
-        "codename": "delete_election"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 72,
-    "fields": {
-        "name": "Can view election",
-        "content_type": 18,
-        "codename": "view_election"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 1,
-    "fields": {
-        "app_label": "admin",
-        "model": "logentry"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 2,
-    "fields": {
-        "app_label": "auth",
-        "model": "permission"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 3,
-    "fields": {
-        "app_label": "auth",
-        "model": "group"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 4,
-    "fields": {
-        "app_label": "contenttypes",
-        "model": "contenttype"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 5,
-    "fields": {
-        "app_label": "sessions",
-        "model": "session"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 6,
-    "fields": {
-        "app_label": "systemuser",
-        "model": "evotinguser"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 7,
-    "fields": {
-        "app_label": "systemuser",
-        "model": "employee"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 8,
-    "fields": {
-        "app_label": "systemuser",
-        "model": "superadmin"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 9,
-    "fields": {
-        "app_label": "election",
-        "model": "anlytics"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 10,
-    "fields": {
-        "app_label": "election",
-        "model": "candidates"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 11,
-    "fields": {
-        "app_label": "election",
-        "model": "observer"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 12,
-    "fields": {
-        "app_label": "election",
-        "model": "party"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 13,
-    "fields": {
-        "app_label": "election",
-        "model": "pollingstation"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 14,
-    "fields": {
-        "app_label": "election",
-        "model": "referendum"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 15,
-    "fields": {
-        "app_label": "election",
-        "model": "regions"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 16,
-    "fields": {
-        "app_label": "election",
-        "model": "voter"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 17,
-    "fields": {
-        "app_label": "election",
-        "model": "referendumoptions"
-    }
-},
-{
-    "model": "contenttypes.contenttype",
-    "pk": 18,
-    "fields": {
-        "app_label": "election",
-        "model": "election"
-    }
-},
-{
-    "model": "sessions.session",
-    "pk": "uab1t4yv5f32m7fw0qrzto0c7nrqoh4u",
-    "fields": {
-        "session_data": ".eJxVjEEOwiAQAP_C2ZBSwAWP3n0D2WUXqZo2Ke3J-HdD0oNeZybzVgn3raa9yZomVhdl1OmXEeanzF3wA-f7ovMyb-tEuif6sE3fFpbX9Wj_BhVb7VtE76KUc4BiOJjoQvAD2tE4y4SEcTQZJRORQBQGtjCwt2SgAFhQny_q6Dg1:1mRFCa:6Ua3gAB-2LYkgsPxDvpcrMBrNpJEjF2I9UaDZiGiR0Y",
-        "expire_date": "2021-10-01T14:50:56.740Z"
-    }
-},
-{
     "model": "systemuser.evotinguser",
     "pk": 1,
     "fields": {
@@ -836,12 +36,8 @@
         "election_type": "General",
         "election_date": "2021-10-15",
         "election_result": "hhh",
-        "political_parties": "ggg",
         "candidates": 1,
-        "election_regions": "iii",
-        "polling_stations": "jjj",
-        "observers": "kkk",
-        "analytics": "lll",
+        "election_regions": [1,2,3],
         "elelction_status": "Active"
     }
 },
@@ -851,6 +47,7 @@
     "pk": 1,
     "fields": {
         "party_name": "Prosperity",
+        "election":1,
         "party_registration_date": "2021-09-09",
         "part_logo": "files/hope_apYq4dT.jpg",
         "party_type": "F",
@@ -863,6 +60,7 @@
     "pk": 2,
     "fields": {
         "party_name": "Semaywi",
+        "election":1,
         "party_registration_date": "2021-09-09",
         "part_logo": "files/blade_and_sea_YrAMvet.jpg",
         "party_type": "F",
@@ -875,6 +73,7 @@
     "pk": 3,
     "fields": {
         "party_name": "Netsanet Ena Ekulnet",
+        "election":1,
         "party_registration_date": "2021-09-09",
         "part_logo": "files/education-teaching-master.jpg",
         "party_type": "F",
@@ -887,6 +86,7 @@
     "pk": 5,
     "fields": {
         "party_name": "abc",
+        "election":1,
         "party_registration_date": "2021-09-10",
         "part_logo": "files/nice_town_forest.jpg",
         "party_type": "R",
@@ -899,6 +99,7 @@
     "pk": 6,
     "fields": {
         "party_name": "Baytona",
+        "election":1,
         "party_registration_date": "2021-09-10",
         "part_logo": "files/lion6_TXBLsZA.png",
         "party_type": "R",
@@ -911,6 +112,7 @@
     "pk": 1,
     "fields": {
         "candidate_name": "Chaltu",
+        "election":1,
         "candidate_DOB": "1986-09-12",
         "candidate_registration_date": "2021-09-07",
         "Candidates_gender": "Female",
@@ -926,6 +128,7 @@
     "pk": 2,
     "fields": {
         "candidate_name": "Kebede",
+        "election":1,
         "candidate_DOB": "1976-08-29",
         "candidate_registration_date": "2021-09-08",
         "Candidates_gender": "Male",
@@ -941,6 +144,7 @@
     "pk": 3,
     "fields": {
         "candidate_name": "Taye",
+        "election":1,
         "candidate_DOB": "1977-06-12",
         "candidate_registration_date": "2021-09-12",
         "Candidates_gender": "Male",
@@ -956,6 +160,7 @@
     "pk": 4,
     "fields": {
         "candidate_name": "abera",
+        "election":1,
         "candidate_DOB": "2021-09-09",
         "candidate_registration_date": "2021-09-09",
         "Candidates_gender": "male",
@@ -971,6 +176,7 @@
     "pk": 5,
     "fields": {
         "candidate_name": "desalegne chane",
+        "election":1,
         "candidate_DOB": "2021-09-11",
         "candidate_registration_date": "2021-09-11",
         "Candidates_gender": "male",
@@ -986,6 +192,7 @@
     "pk": 6,
     "fields": {
         "candidate_name": "fff",
+        "election":1,
         "candidate_DOB": "2021-09-13",
         "candidate_registration_date": "2021-09-13",
         "Candidates_gender": "male",

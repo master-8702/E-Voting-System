@@ -1,0 +1,171 @@
+{% extends "index1.html" %}
+{% load static%}
+{% block content%}
+<script src="{%   static 'Chartjs/dist/chart.js' %}"></script>
+
+<div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="card-body col-lg-8">
+
+
+                {% for a in referendum_data %}
+
+                <h1 class="mb-5 text-center"> {{ a.referendum_name }} </h1>
+                <ul class="list-group mb-5">
+                    {% for b in a.referendumoptions_set.all %}
+
+                    <li class=" list-group-item">
+                        {{ b.referendum_option_name }} <span class="badge badge-success float-right">
+                            {{b.number_of_votes}} vote {{b.number_of_votes | pluralize }}
+                        </span>
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+                {% endfor %}
+                <div>
+                    <canvas id="myChart" width="400" height="200"></canvas>
+                    <canvas id="myChart2" width="400" height="200"></canvas>
+
+
+
+
+                </div>
+
+
+            </div>
+
+
+            <script>
+                var mydata;
+                var data2 = {
+                    'referendum_options': [],
+                    'vote_counts': []
+                }
+
+                // This is the main method for drawing cgarts/digrams .. its from charts.js ..this one is for bar chart
+                function drawBarChart() {
+
+                    var ctx = document.getElementById('myChart');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            labels: data2.referendum_options,
+                            datasets: [{
+                                label: 'Party Votes',
+                                label: '# of Votes',
+
+                                // data: [12, 19, 3, 5, 2, 3],
+                                data: data2.vote_counts,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                }
+
+
+
+                function drawPolarChart() {
+
+                    var ctx = document.getElementById('myChart2');
+                    var myChart = new Chart(ctx, {
+                        type: 'polarArea',
+                        data: {
+                            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                            labels: data2.referendum_options,
+                            datasets: [{
+                                label: 'Party Votes',
+                                label: '# of Votes',
+
+                                // data: [12, 19, 3, 5, 2, 3],
+                                data: data2.vote_counts,
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+
+                }
+
+
+                // this method is gonna fetch our data from the evoting_api and call the drawBarGraph function to draw the diagram
+
+                async function getData() {
+                    const resonse = await fetch('http://127.0.0.1:8000/evoting_api/referendum/');  //will be replaced by referendum api 
+                    const data = await resonse.json();
+                    console.log(data2);
+                    // console.log(data[0])
+                    data.forEach(data_element => {
+                        console.log('number 2' + data_element)
+                        data2.referendum_options.push(data_element.referendum_option_name);
+                        data2.vote_counts.push(data_element.number_of_votes)
+                    });
+
+                    drawBarChart(); // here we are calling drawBarChart after we get the chrt data
+                    drawPolarChart();
+
+                }
+
+                getData();  // we will call the api to get data for the graph here .. after defining all the functions
+
+
+            </script>
+
+        </div>
+
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+{% endblock content %}

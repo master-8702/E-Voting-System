@@ -5,6 +5,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'voters', views.VoterViewSet)
+router.register(r'referendum', views.ReferendumOptionsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

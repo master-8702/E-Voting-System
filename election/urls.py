@@ -73,6 +73,7 @@ urlpatterns = [
 
 
     path('view_analytics/', views.view_analytics, name='view_analytics'),
+    path('referendum/view_referendum_result/', views.view_referendum_result, name='view_referendum_result'),
 
 
 

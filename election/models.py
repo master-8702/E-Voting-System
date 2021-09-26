@@ -1,4 +1,5 @@
 from datetime import date
+import election
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.db.models.fields import CharField, DateField
@@ -39,12 +40,8 @@ class Election(models.Model):
     election_type = models.CharField(choices=ELECTION_TYPE_CHOICES ,max_length=255, default=GENERAL)
     election_date = models.DateField(default='2021-08-23') 
     election_result = models.CharField(max_length=255)
-    political_parties = models.CharField(max_length=255)
-    candidates = models.ForeignKey(to='Candidates', on_delete=PROTECT )
-    election_regions = models.CharField(max_length=255)
-    polling_stations = models.CharField(max_length=255)
-    observers = models.CharField(max_length=255)
-    analytics = models.CharField(max_length=255)
+    election_regions = models.ForeignKey(to='ElectionRegions', on_delete=PROTECT)
+    election_result = models.CharField(max_length=255, default='Election Result 1')
     elelction_status = models.CharField(STATUS_CHOICES ,max_length=25, default=ACTIVE)
 
 #this method will return the elction name whenever we use the election object it self
@@ -68,11 +65,8 @@ class Referendum(models.Model):
     referendum_name = models.CharField(max_length=255)
     referendum_registration_date = models.DateField(default=date.today)
     referendum_date = models.DateField(default='2021-10-15')
-    referendum_regions = models.ForeignKey(to='Regions', on_delete=PROTECT)
-    referendum_election_regions = models.ForeignKey(to='ElectionRegions', on_delete=PROTECT)
-    referendum_observers = models.ForeignKey(to='Observer', on_delete= PROTECT)
-    referendum_analytics = models.CharField(max_length=25)
-    referendum_result = models.CharField(max_length=25)
+    referendum_regions = models.ForeignKey(to='ElectionRegions', on_delete=PROTECT)
+    referendum_result = models.CharField(max_length=25, default = 'Referendum Result 1')
     referendum_status = models.CharField(choices= STATUS_CHOICES ,max_length=255, default=ACTIVE)
 
 
@@ -96,6 +90,7 @@ class ReferendumOptions(models.Model):
     
     referendum_option_name = models.CharField(max_length=25)
     referendum = models.ForeignKey(to=Referendum, on_delete=PROTECT)
+    number_of_votes = models.PositiveIntegerField(default=0)
 
 
 
@@ -113,18 +108,25 @@ class Party(models.Model):
         (REGIONAL, 'Regional')
     ]
     party_name = models.CharField(max_length=255)
+    election = models.ForeignKey(to= Election, on_delete=PROTECT)
     party_registration_date = models.DateField(default=date.today)
-    part_logo = models.ImageField(upload_to='files')
+    party_logo = models.ImageField(upload_to='files')
     party_type = models.CharField(choices=PARTY_CHOICES, max_length=255, default=FEDERAL)
     participation_regions = models.ManyToManyField(to='ElectionRegions')
     party_status = models.CharField(choices= STATUS_CHOICES ,max_length=25, default=ACTIVE)
-    # candidate_list = models.ForeignKey(to='Candidates', on_delete=PROTECT, default=1)
-
+    number_of_votes = models.PositiveBigIntegerField(default=0)
    # This method is gonna tell us the total number of candidates (which are related with Party by foreign key)
    # and it will act as a normal attribute propertiy of the class (since we add the @property class before it)
     @property
     def candidate_number(self):
         return self.candidates_set.count()
+
+    @property
+    def party_vote_counter(self):
+        total_votes = 0
+        for a in  self.candidates_set.all():
+            total_votes += a.number_of_votes
+        return total_votes
 
     # This method is gonna give us the party name whenever we access a given object of this class (if we 
     # don't specify which attribute to select(use) )
@@ -152,19 +154,28 @@ class Candidates(models.Model):
     PARTY ='Party'
     PERSONAL = 'Personal'
 
-    PARTY_TYPE_CHOICES=[
+    CANDIDATE_TYPE_CHOICES=[
         (PARTY,'Party'),
         (PERSONAL, 'Personal')
     ]
 
+    FOR_HOUSE_OF_PEOPLES_REPRESENTATIVES ="For House of Peoples' Representatives"
+    FOR_REGIONAL_GOVERNMENT_COUNCIL = 'For Regional Government Council'
+
+    PARTICIPATION_TYPE = [
+        (FOR_HOUSE_OF_PEOPLES_REPRESENTATIVES, "For House of Peoples' Representatives"),
+        (FOR_REGIONAL_GOVERNMENT_COUNCIL, 'For Regional Government Council')
+    ]
 
     candidate_name = models.CharField(max_length=255)
-    candidate_DOB = models.DateField(auto_now_add=True)
+    election = models.ForeignKey(to = Election, on_delete=PROTECT)
+    candidate_DOB = models.DateField(default='1987-03-24')
     candidate_registration_date = models.DateField(default=date.today)
     Candidates_gender = models.CharField(choices=GENDER_CHOICES ,max_length=10)
-    candidate_type = models.CharField(choices=PARTY_TYPE_CHOICES,max_length=255, default=PARTY)
+    candidate_type = models.CharField(choices=CANDIDATE_TYPE_CHOICES,max_length=255, default=PARTY)
     education_level = models.CharField(choices=EDUCATION_LEVEL_CHOICES, max_length=25)
     participation_region = models.ManyToManyField(to='ElectionRegions')
+    participates_for = models.CharField(choices=PARTICIPATION_TYPE, default= FOR_REGIONAL_GOVERNMENT_COUNCIL, max_length=50)
     candidate_photo = models.ImageField(upload_to='candidates_image/')
     candidate_status = models.CharField(choices= STATUS_CHOICES ,max_length=25, default=ACTIVE)
     party = models.ForeignKey(to=Party, on_delete=PROTECT, blank=True, null=True)
@@ -198,6 +209,8 @@ class Observer(models.Model):
         (DOMESTIC, 'Domestic'), (INTERNATIONAL, 'International'), (MEDIA, 'Media'), (POLITICAL_PARTY_AGENT, 'Political Party Agent'), (CANDIDATE_AGENT, 'Candidate Agent')
     ]
     observer_name = models.CharField(max_length=50)
+    election = models.ForeignKey(to= Election, on_delete=PROTECT, blank=True)
+    referendum = models.ForeignKey(Referendum, on_delete=PROTECT, blank=True)
     observer_regisration_date = models.DateField(default=date.today)
     observer_organization = models.CharField(max_length=25)
     observer_type = models.CharField(choices=OBSERVER_TYPE_CHOICES ,max_length=255, default=POLITICAL_PARTY_AGENT)
@@ -240,6 +253,8 @@ class Voter(models.Model):
     middle_name = models.CharField(max_length=100, validators=[validators.validate_name()])
     last_name = models.CharField(max_length=100, validators=[validators.validate_name()]) 
     voter_password = models.CharField(max_length=25)
+    election = models.ForeignKey(to=Election, on_delete=PROTECT, blank=True, null=True )
+    referendum = models.ForeignKey(to=Referendum, on_delete=PROTECT, blank=True, null= True)
     registration_date = models.DateField(auto_now_add=True)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
     citizen_registration_number = models.PositiveIntegerField()
@@ -330,8 +345,11 @@ class ElectionRegions(models.Model):
 class PollingStation(models.Model):
     polling_station_id = models.CharField(max_length=25)
     polling_station_name = models.CharField(max_length=50)
+    election = models.ForeignKey(to= Election, on_delete=PROTECT)
+    referendum = models.ForeignKey(to= Referendum, on_delete=PROTECT)
     found_in_region = models.ForeignKey(to=ElectionRegions, on_delete=PROTECT)
     polling_station_status = models.CharField(choices=STATUS_CHOICES ,max_length=25, default=ACTIVE)
+    number_of_voters = models.PositiveIntegerField(default=0)
 
 
     def __str__(self):
@@ -345,3 +363,5 @@ class PollingStation(models.Model):
 class Anlytics(models.Model):
     analytics_name = models.CharField(max_length=25)
     analytics_data = models.CharField(max_length=255)
+    election = models.ForeignKey(to=Election, on_delete=PROTECT)
+    referendum = models.ForeignKey(to=Referendum, on_delete=PROTECT)
