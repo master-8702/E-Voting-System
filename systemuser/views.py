@@ -10,6 +10,9 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.http import JsonResponse
 from django.db.models import Q
+from election.models import Voter
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 
 
@@ -29,6 +32,24 @@ def index(request):
 
 def index1(request):
     return render(request, 'systemuser/index1.html')
+
+
+def voter_login(request):
+    # current_user = None;
+    error_message = "Invalid VRID and/or Password"
+    if request.method =='POST':
+        vrid = request.POST['VRID']
+        password = request.POST['password']
+        voter = Voter.objects.all().filter(voter_registration_id=vrid, voter_password=password)
+        print(voter)
+        if len(voter) > 0:
+            current_user = voter;
+            return render(request, 'voter_index.html', {'current_user': current_user})
+        else:
+            return render(request, 'systemuser/voter_login.html', {'error_message': error_message})
+            
+
+    return render(request, 'systemuser/voter_login.html')
 
 def login_process(request):
     

@@ -2,6 +2,7 @@ import random
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.db.models.fields.json import JSONField
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
 from systemuser.models import EvotingUser
@@ -11,11 +12,44 @@ from election.forms import VoterForm
 from .forms import (CandidatesForm, ElectionForm, ElectionRegionsFrom,
                     ObserverForm, PartyForm, PollingStationsForm,
                     ReferendumForm, ReferendumOptionsForm, RegionsForm)
-from .models import (Candidates, Election, ElectionRegions, Observer, Party,
+from .models import (ActionsToBeApproved, Candidates, Election, ElectionRegions, Observer, Party,
                      PollingStation, Referendum, ReferendumOptions, Regions,
                      Voter)
+from .serializer import ActionsToBeApprovedSerializer, RegionsSerializer
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
+import json
+from types import SimpleNamespace
+import io
 
 
+def delete_approve_actions(request, id):
+    # approve_actions_instance = ActionsToBeApproved.objects.get(pk=id)
+    # approve_actions_instance.delete()
+    approve_actions_instance = ActionsToBeApproved.objects.all()
+    for a in approve_actions_instance:
+        a.delete()
+    return redirect('approve_actions')
+
+def approve_actions(request):
+
+    actions_data = ActionsToBeApproved.objects.all()
+
+    if request.method == 'POST':
+        print(request.POST)
+        if request.POST.get('approve')=='Approve':
+            approved_data = request.POST.get('id')
+            approved_data_as_dict = json.loads(approved_data)
+            
+            serializer = RegionsSerializer(data = approved_data_as_dict)
+            if serializer.is_valid():
+                
+                serializer.save()
+            else:
+                print("didn't pass is_valid ")
+                print(serializer.errors)
+
+    return render(request, 'election/approve_actions.html',{'actions_data':actions_data})
 
 # view (controler) methods for view analytics starts here
 def election_api(request):
@@ -622,7 +656,14 @@ def register_region(request):
     else:
         form = RegionsForm(request.POST)
         if form.is_valid():
-            form.save()
+            region = form.save(commit=False)
+            serializer = RegionsSerializer(region)
+            json_data = json.dumps(serializer.data)
+            actions = ActionsToBeApproved();
+            actions.sender = request.user
+            actions.entity_id = 1
+            actions.entity = json_data
+            actions.save()
             # form.save_m2m()
         else:
              return render(request, 'election/create_region.html', {'form': form, 'var':'r'})

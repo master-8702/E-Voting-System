@@ -1,5 +1,4 @@
 from datetime import date
-import election
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.db.models.fields import CharField, DateField
@@ -258,7 +257,7 @@ class Voter(models.Model):
     registration_date = models.DateField(auto_now_add=True)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10)
     citizen_registration_number = models.PositiveIntegerField()
-    voter_registratio_id = models.CharField(max_length=255) 
+    voter_registration_id = models.CharField(max_length=255) 
     registerd_at = models.ForeignKey(to='PollingStation', on_delete=PROTECT)
     woreda = models.IntegerField()
     sub_city = models.CharField(max_length=25)
@@ -365,3 +364,10 @@ class Anlytics(models.Model):
     analytics_data = models.CharField(max_length=255)
     election = models.ForeignKey(to=Election, on_delete=PROTECT)
     referendum = models.ForeignKey(to=Referendum, on_delete=PROTECT)
+
+
+class ActionsToBeApproved(models.Model):
+    sender  = models.CharField(max_length=25)
+    entity_id = models.PositiveIntegerField()
+    entity = models.JSONField()
+    data = models.BinaryField(default=bytes("data",'utf-8'))

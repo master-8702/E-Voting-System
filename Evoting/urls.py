@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.contrib.staticfiles.urls import static
+from election import views
 
 
 urlpatterns = [
@@ -35,6 +36,7 @@ urlpatterns = [
     # path('observer/', include('election.urls')),
     path('election/', include('election.urls')),
     path('evoting_api/', include('evoting_api.urls')),
+    path('authorization/', include('election.urls'))
 
 
     

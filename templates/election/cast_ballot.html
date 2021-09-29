@@ -131,7 +131,29 @@
 
 
                             </div>
+
+                            
                         </div>
+                        <br>
+                        <h3>Optional presentation</h3>
+                        {% for candidate in candidates_data %}
+                            <ol class="list-group list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    
+                                  <span ><img src=" {{ candidate.candidate_photo.url }}" height="80" width="80"></span>
+                                <span> <img src=" {{ candidate.party_image.url }} " height="80" width="80"
+                                    class="img-circle">  </span>
+                                    <span> <input type="button" value="Select"></span>
+                                    <span>{{ candidate.candidate_name }} </span>
+                                    <span>{{candidate.party }} </span>
+                                    <div class="fw-bold"></div>
+                                    
+                                  </div></span>
+                                  <span class="badge bg-primary rounded-pill">14</span>
+                                </li>
+                                </ol>
+                                {% endfor %}
                     </div>
                 </div>
             </div>
