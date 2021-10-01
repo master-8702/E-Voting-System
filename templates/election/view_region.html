@@ -43,6 +43,7 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Region Id</th>
                                             <th>region Name</th>
                                             <th>Number of Election Regions</th>
@@ -57,6 +58,7 @@
                                         {% for o in region_data %}
 
                                         <tr>
+                                            <td> {{o.id}}</td>
                                             <td> {{o.region_id}}</td>
                                             <td> {{o.region_name}}</td>
                                             <td> {{o.number_of_election_region}}</td>

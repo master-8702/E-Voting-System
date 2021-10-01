@@ -40,22 +40,26 @@
 
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <form action="{% url 'approve_actions' %}" method="POST">
+                                <form action="{% url 'view_approve_actions' %}" method="POST">
                                     {% csrf_token %}
-                                    <input type="text" name="search" placeholder="Type a voter name/id here">
-                                    <input type="submit">
+                                    <input type="text" name="search" placeholder="Type sender name or Data">
+                                    
+                                    <input type="submit" value="Search" name="search_btn"> Or
+                                  <span>  <input type="submit" name="view_all" value="View All"></span>
+
                                 </form>
                                 <br>
 
 
-                                {%if actions_data %}
+                                {% if actions_data %}
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
                                             <th>No</th>
                                             <th>Sender</th>
                                             <th>Entity Id</th>
-                                            <th>JSON Data</th>
+                                            <th> Data</th>
+                                            <th> Action Type/Data Type</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -64,20 +68,24 @@
                                         {% for o in actions_data %}
 
                                         <tr>
-                                            <form method="POST">
+                                            <form action="{% url 'approve_actions' o.id %}" method="POST">
                                                 {% csrf_token %}
                                             <td> {{o.id}}</td>
                                             <td> {{o.sender}}</td>
                                             <td> {{o.entity_id}}</td>
-                                        
                                             <td> {{o.entity}}</td>
+                                            <td> {{o.action_type}} /{{o.data_type}}</td>
+
                                             
-                                            <td> <input type="hidden" value="{{ o.entity }}" name="id" >
-                                                <input type="submit" value="Approve" name="approve">
+                                            <input type="hidden" value="{{ o.id }}" name="approve_actions_id" >
+                                            <input type="hidden" value="{{ o.entity_id }}" name="entity_id" >
+                                            <input type="hidden" value="{{ o.entity }}" name="entity_data" >
+                                             <input type="hidden" value="{{ o.data_type }}" name="data_type" >
+                                             <input type="hidden" value="{{ o.action_type }}" name="action_type" >
+                                             <td>   <input type="submit" value="Approve" name="approve" >  </td>
                                             </td>
-                                            <td>  <textarea name="data" id="data" cols="6" rows="3">{{ o.entity }} </textarea>  </td>
                                             <td> <a class="theme-link" onclick="return delete_voter()"
-                                                    href="{% url 'delete_approve_actions' o.id %}">Delete</a></td>
+                                                    href="{% url 'reject_approve_actions' o.id %}">Delete</a></td>
 
                                                 </form>
 
@@ -92,6 +100,10 @@
                                 <p> </p>
 
                                 {% else %}
+                                {% if  actions_data %}
+                                <p class="danger"> Sorry! No result <b> Found.</b> </p>
+                                {% endif %}
+
                                 <p class="danger"> Sorry! Approval list is <b> Empty</b> for now.</p>
 
 

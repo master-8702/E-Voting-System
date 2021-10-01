@@ -36,6 +36,7 @@ urlpatterns = [
     # path('observer/', include('election.urls')),
     path('election/', include('election.urls')),
     path('evoting_api/', include('evoting_api.urls')),
+    path('evoting_api2/', include('evoting_api2.urls')),
     path('authorization/', include('election.urls'))
 
 

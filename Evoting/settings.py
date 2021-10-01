@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'Evoting',
     'rest_framework',
     'evoting_api',
+    'evoting_api2',
 ]
 
 
@@ -176,10 +177,10 @@ STATICFILES_DIRS = [
 
 # we added this to use the django debug toolbar 
 
-if DEBUG:
-    INSTALLED_APPS.append('debug_toolbar.apps.DebugToolbarConfig')
-    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
-    DEBUG_TOOLBAR_CONFIG = {
-        'SHOW_TOOLBAR_CALLBACK': lambda request: True,
-        'EXTRA_SIGNALS': [],
-    }
+# if DEBUG:
+#     INSTALLED_APPS.append('debug_toolbar.apps.DebugToolbarConfig')
+#     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+#     DEBUG_TOOLBAR_CONFIG = {
+#         'SHOW_TOOLBAR_CALLBACK': lambda request: True,
+#         'EXTRA_SIGNALS': [],
+#     }

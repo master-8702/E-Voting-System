@@ -75,8 +75,10 @@ urlpatterns = [
     path('view_analytics/', views.view_analytics, name='view_analytics'),
     path('referendum/view_referendum_result/', views.view_referendum_result, name='view_referendum_result'),
 
-    path('authorization/approve_actions/',views.approve_actions, name='approve_actions'),
+    path('authorization/approve_actions/<int:id>/',views.approve_actions, name='approve_actions'),
+    path('authorization/view_approve_actions/',views.view_approve_actions, name='view_approve_actions'),
     path('authorization/delete_approve_actions/<int:id>/',views.delete_approve_actions, name='delete_approve_actions'),
+    path('authorization/reject_approve_actions/<int:id>/',views.reject_approve_actions, name='reject_approve_actions'),
 
 
 

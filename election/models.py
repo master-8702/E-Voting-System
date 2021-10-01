@@ -367,7 +367,18 @@ class Anlytics(models.Model):
 
 
 class ActionsToBeApproved(models.Model):
+    CREATE = 'Create'
+    UPDATE = 'Update'
+    DELETE = 'Delete'
+
+    ACTION_TYPE_CHOICES=[
+        (CREATE, 'Create'),
+        (UPDATE,'Update'),
+        (DELETE, 'Delete')
+    ]
     sender  = models.CharField(max_length=25)
     entity_id = models.PositiveIntegerField()
+    action_type = models.CharField(choices= ACTION_TYPE_CHOICES, max_length=50)
+    data_type  = models.CharField(max_length=50)
     entity = models.JSONField()
-    data = models.BinaryField(default=bytes("data",'utf-8'))
+    

@@ -1,9 +1,10 @@
 import random
+from typing import Type
 
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.fields.json import JSONField
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, response
 from django.shortcuts import redirect, render
 from systemuser.models import EvotingUser
 
@@ -15,41 +16,101 @@ from .forms import (CandidatesForm, ElectionForm, ElectionRegionsFrom,
 from .models import (ActionsToBeApproved, Candidates, Election, ElectionRegions, Observer, Party,
                      PollingStation, Referendum, ReferendumOptions, Regions,
                      Voter)
-from .serializer import ActionsToBeApprovedSerializer, RegionsSerializer
+from .serializer import  RegionsSerializer
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 import json
-from types import SimpleNamespace
-import io
+import requests
+from requests import Request, Session
+
+def update_region_new(request, id, action, json_data):
+    print(id)
+    # region_instance = Regions.objects.get(id=id)
+    # serializer = RegionsSerializer(region)
+    # json_data = json.dumps(serializer.data)
+    url = "http://127.0.0.1:8000/evoting_api2/region-update/"+ str(id) +"/"
+    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    r = requests.post(url, data=json_data, headers=headers)
+    
+    # serializer = RegionsSerializer(instance = region_instance, data= data)
+    # if serializer.is_valid():
+    #     serializer.save()
+    return redirect('view_region')
+
+def reject_approve_actions(request, id):
+    approve_actions_instance = ActionsToBeApproved.objects.get(pk=id)
+    approve_actions_instance.delete()
+    return redirect('view_approve_actions')
+
+def create_approve_actions(request, json_data, app_action_id):
+    url = "http://127.0.0.1:8000/evoting_api2/region-create/"
+    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    r = requests.post(url, data= json_data, headers=headers)
+    print("deleted by the api")
+    action_insta =ActionsToBeApproved.objects.get(pk=app_action_id)
+    action_insta.delete()
+    print("action list wust yalewem tedeletual")
+    return HttpResponse("ere addisem create argual")
+def delete_approve_actions(request, id, app_action_id):
+    url = "http://127.0.0.1:8000/evoting_api2/region-delete/"+ str(id) +"/"
+    headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+    r = requests.post(url, headers=headers)
+    print("deleted by the api")
+    action_insta =ActionsToBeApproved.objects.get(pk=app_action_id)
+    action_insta.delete()
+    print("action list wust yalewem tedeletual")
+
+    return HttpResponse("entity has been succssfully deleted!")
 
 
-def delete_approve_actions(request, id):
-    # approve_actions_instance = ActionsToBeApproved.objects.get(pk=id)
-    # approve_actions_instance.delete()
-    approve_actions_instance = ActionsToBeApproved.objects.all()
-    for a in approve_actions_instance:
-        a.delete()
-    return redirect('approve_actions')
-
-def approve_actions(request):
-
-    actions_data = ActionsToBeApproved.objects.all()
+def approve_actions(request, id):
 
     if request.method == 'POST':
         print(request.POST)
         if request.POST.get('approve')=='Approve':
-            approved_data = request.POST.get('id')
+           
+            approved_data = request.POST.get('entity_data')
             approved_data_as_dict = json.loads(approved_data)
+            entity_id =request.POST.get('entity_id')
+            approve_action_id  =request.POST.get('approve_actions_id')
             
             serializer = RegionsSerializer(data = approved_data_as_dict)
             if serializer.is_valid():
+                json_data = json.dumps(serializer.data)
+            if(request.POST.get('action_type')=='Update'):
+                update_region_new(request, request.POST.get('entity_id'), 'Update', json_data)
+            if(request.POST.get('action_type')=='Delete'):
+                delete_approve_actions(request, entity_id , approve_action_id)
+            if(request.POST.get('action_type')=='Create'):
+                create_approve_actions(request, json_data, approve_action_id )
+    #         if serializer.is_valid():
                 
-                serializer.save()
-            else:
-                print("didn't pass is_valid ")
-                print(serializer.errors)
+    #             serializer.save()
+    #             approve_actions_instance = ActionsToBeApproved.objects.get(pk=id)
+    #             approve_actions_instance.delete()
+    #         else:
+    #             print("didn't pass is_valid ")
+    #             print(serializer.errors)
+    return redirect('view_approve_actions')
 
-    return render(request, 'election/approve_actions.html',{'actions_data':actions_data})
+
+def view_approve_actions(request):
+
+    actions_data = ActionsToBeApproved.objects.all()
+    post_data = request.POST
+
+    if request.method == 'POST':
+        if 'search_btn' in post_data:
+            actions_data = ActionsToBeApproved.objects.filter(Q(sender__icontains=post_data.get('search')) | Q( entity__icontains =post_data.get('search')))
+            return render(request, 'election/approve_actions.html', {'actions_data':actions_data})
+
+        elif 'view_all' in post_data:
+            return render(request, 'election/approve_actions.html', {'actions_data':actions_data})
+
+    else:   
+        
+        return render(request, 'election/approve_actions.html',{'actions_data':actions_data} )
+
 
 # view (controler) methods for view analytics starts here
 def election_api(request):
@@ -659,11 +720,36 @@ def register_region(request):
             region = form.save(commit=False)
             serializer = RegionsSerializer(region)
             json_data = json.dumps(serializer.data)
+
+
+            # url = "http://127.0.0.1:8000/evoting_api2/region-create/"
+            # headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+
+            # s = Session()
+            # req = Request('POST', url=url, headers=headers)
+            # prepped = req.prepare()
+
+            # # do something with prepped.body
+            # prepped.body = json_data
+            # # del prepped.headers[ 'Content-type': 'application/json']
+
+            # resp = s.send(prepped,
+                
+            #     timeout=10
+            # )
+            data = serializer.data
+            # headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+            # r = requests.post(url, data=json_data, headers=headers)
+            # r1 = requests.post('http://127.0.0.1:8000/evoting_api2/region-create/')  
             actions = ActionsToBeApproved();
             actions.sender = request.user
+            print(vars(region))
             actions.entity_id = 1
+            actions.action_type  ='Create'
+            actions.data_type = type(region)
             actions.entity = json_data
             actions.save()
+            print(vars(actions))
             # form.save_m2m()
         else:
              return render(request, 'election/create_region.html', {'form': form, 'var':'r'})
@@ -698,14 +784,43 @@ def update_region(request, id):
         region_instance = Regions.objects.get(pk=id)
         form = RegionsForm(request.POST)
         if form.is_valid():
-            form.save()
+            
+            
+            region = form.save(commit=False)
+            region.id =id;
+            print(region.seats_for_HPR)
+            print(vars(region))
+            print(region.id)
+            print(type(region))
+            serializer = RegionsSerializer(region)
+            json_data = json.dumps(serializer.data)
+            ab= str.split(str(type(region)),'.')
+            abc = ab[2]
+            actions = ActionsToBeApproved();
+            actions.sender = request.user
+            actions.entity_id = id
+            actions.action_type  ='Update'
+            actions.data_type = 'Regions'
+            actions.entity = json_data
+            actions.save()
+            print(vars(actions))
+            # url = "http://127.0.0.1:8000/evoting_api2/region-update/"+ str(id) +"/"
+            # headers = {'Content-type': 'application/json', 'Accept': 'application/json'}
+            # r = requests.post(url, data=json_data, headers=headers)
         return redirect('view_region')
 
 
 
 def delete_region(request, id):
-    region_instance =Regions.objects.get(pk=id)
-    region_instance.delete()
+    region = Regions.objects.get(pk=id)
+    serializer = RegionsSerializer(region)
+    json_data = json.dumps(serializer.data)
+    actions = ActionsToBeApproved();
+    actions.sender = request.user
+    actions.entity_id = id
+    actions.action_type  ='Delete'
+    actions.entity = json_data
+    actions.save()
     return redirect('view_region')
 
 
